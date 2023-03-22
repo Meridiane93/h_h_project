@@ -19,8 +19,6 @@ class PagingAdapter(private val actionListener: ActionListener) :
     PagingDataAdapter<Product, PagingAdapter.ProductViewHolder>(DiffUtilCallBack()),
     View.OnClickListener {
 
-    private val differ = AsyncListDiffer(this, DiffUtilCallBack())
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder =
         ProductViewHolder(
             ProductFragmentBinding.inflate(
@@ -31,25 +29,19 @@ class PagingAdapter(private val actionListener: ActionListener) :
         )
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
-        holder.itemView.tag = differ.currentList[position]
-        holder.bind(differ.currentList[position])
+        holder.bind(getItem(position))
     }
 
-    override fun getItemCount(): Int = differ.currentList.size
 
     inner class ProductViewHolder(private val itemBinding: ProductFragmentBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
-        fun bind(product: Product) = with(itemBinding) {
-            textProduct.text = product.title
-            textCatecory.text = product.category
-            imageProduct.load(product.preview!!)
+        fun bind(product: Product?) = with(itemBinding) {
+            textProduct.text = product?.title
+            textCatecory.text = product?.category
+            imageProduct.load(product?.preview!!)
 
             itemView.setOnClickListener(this@PagingAdapter)
         }
-    }
-
-    fun submitList(products: List<Product>) {
-        differ.submitList(products)
     }
 
     override fun onClick(v: View) {

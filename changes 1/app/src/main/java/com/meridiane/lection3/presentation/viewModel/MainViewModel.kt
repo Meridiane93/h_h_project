@@ -1,37 +1,38 @@
 package com.meridiane.lection3.presentation.viewModel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.meridiane.lection3.data.Product
+import com.meridiane.lection3.domain.PageSource
 import com.meridiane.lection3.domain.repository.MockRepository
 import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.*
 
 class MainViewModel : ViewModel() {
 
     val liveDataError = MutableLiveData<String>()
-    val liveData = MutableLiveData<List<Product>>()
+    private var _productsState = MutableStateFlow<PagingData<Product>>(PagingData.empty())
+    val productsState: StateFlow<PagingData<Product>> = _productsState
 
     private val repository = MockRepository()
 
-    fun start() {
-        viewModelScope.launch {
-            try {
-                fun getProducts() = viewModelScope.async {
-                    repository.getProducts()
-                }
+    fun getProduct(){
+        try {
+            viewModelScope.launch {
+                repository.getList().cachedIn(viewModelScope)
+                    .collectLatest {
 
-                val listProducts = getProducts().await().apply {
-                    if (this.isFailure) {
-                        liveDataError.value = "getProducts()"
-                        throw Exception("getProducts()")
+                        _productsState.value = it
                     }
-                }.getOrNull()
-
-                liveData.value = listProducts!!
-            } catch (e: Exception) {
-                liveDataError.value = e.message
             }
+        }catch (e: Exception) {
+            liveDataError.value = e.message
         }
     }
 

@@ -1,15 +1,19 @@
 package com.meridiane.lection3.domain.repository
 
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
 import com.meridiane.lection3.R
 import com.meridiane.lection3.data.Product
+import com.meridiane.lection3.domain.PageSource
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
 
 class MockRepository {
 
-    suspend fun getProducts(): Result<List<Product>> {
+    suspend fun getProducts2(): List<Product> {
         randomDelay()
-        return randomResult(
-            listOf(
+      return  listOf(
                 Product(
                     "1",
                     "Футболка серая",
@@ -100,9 +104,21 @@ class MockRepository {
                     "Шапка ",
                     R.drawable.reposit_id15
                 )
-            )
-        )
+           )
+    }
 
+    fun getList(): Flow<PagingData<Product>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = 2,
+                enablePlaceholders = false,
+                initialLoadSize = 2,
+                prefetchDistance = 2 / 2
+            ),
+            pagingSourceFactory = {
+                PageSource(this, 4)
+            }
+        ).flow
     }
 
     suspend fun getLogin(): Result<String> {

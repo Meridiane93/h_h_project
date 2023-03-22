@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,6 +16,8 @@ import com.meridiane.lection3.databinding.FragmentProductMainBinding
 import com.meridiane.lection3.presentation.recyclerView.ActionListener
 import com.meridiane.lection3.presentation.recyclerView.PagingAdapter
 import com.meridiane.lection3.presentation.viewModel.MainViewModel
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 class BookFragment : Fragment() {
 
@@ -36,10 +39,8 @@ class BookFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentProductMainBinding.inflate(inflater, container, false)
-
         return binding.root
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -47,7 +48,6 @@ class BookFragment : Fragment() {
         val divider = DividerItemDecoration(context,DividerItemDecoration.VERTICAL)
         divider.setDrawable(ContextCompat.getDrawable(view.context, R.drawable.divider)!!)
         binding.rcView.addItemDecoration(divider)
-        getData(binding)
 
         binding.rcView.apply {
             layoutManager =
@@ -55,10 +55,6 @@ class BookFragment : Fragment() {
             adapter = productsAdapter
         }
 
-        viewModel.liveData.observe(viewLifecycleOwner) {
-            productsAdapter.submitList(it)
-            binding.container.state = ProgressContainer.State.Success
-        }
 
         viewModel.liveDataError.observe(viewLifecycleOwner) {
             binding.container.state = ProgressContainer.State.Notice(it)
@@ -72,12 +68,24 @@ class BookFragment : Fragment() {
         binding.idProfile.setOnClickListener {
             Toast.makeText(context, "Профиль", Toast.LENGTH_LONG).show()
         }
+
+
+        getData(binding)
+
+        viewModel.getProduct()
         scrollListener()
+
+        lifecycleScope.launch {
+            viewModel.productsState.collectLatest{
+                binding.container.state = ProgressContainer.State.Success
+                productsAdapter.submitData(it)
+
+            }
+        }
     }
 
     private fun getData(binding: FragmentProductMainBinding) {
 
-        viewModel.start()
         binding.container.state = ProgressContainer.State.Loading
         binding.container.visibility = View.VISIBLE
     }
@@ -90,10 +98,7 @@ class BookFragment : Fragment() {
                 if (!recyclerView.canScrollVertically(1)
                     && newState == RecyclerView.SCROLL_STATE_IDLE) {
 
-                        // тут будут запускаться методы подгрузки данных порциями
-
-                    Toast.makeText(context,"Больше нет продуктов",Toast.LENGTH_LONG).show()
-
+                    Toast.makeText(context,"Загружаем данные",Toast.LENGTH_LONG).show()
                 }
             }
         })
