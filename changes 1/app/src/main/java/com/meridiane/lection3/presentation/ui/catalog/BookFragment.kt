@@ -13,7 +13,7 @@ import com.meridiane.lection3.R
 import com.meridiane.lection3.data.Product
 import com.meridiane.lection3.databinding.FragmentProductMainBinding
 import com.meridiane.lection3.presentation.recyclerView.ActionListener
-import com.meridiane.lection3.presentation.recyclerView.ProductAdapter
+import com.meridiane.lection3.presentation.recyclerView.PagingAdapter
 import com.meridiane.lection3.presentation.viewModel.MainViewModel
 
 class BookFragment : Fragment() {
@@ -24,7 +24,7 @@ class BookFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val productsAdapter by lazy {
-        ProductAdapter(object : ActionListener {
+        PagingAdapter(object : ActionListener {
             override fun detailsProduct(product: Product) {
                 Toast.makeText(context, "Product: $product", Toast.LENGTH_LONG).show()
             }
