@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<resources>
-    <declare-styleable name="ButtonProgressBar">
-        <attr name="textString" format="string" />
-        <attr name="progressBar" format="boolean" />
-        <attr name="bagroundColor" format="color" />
-    </declare-styleable>
-</resources>
