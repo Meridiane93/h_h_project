@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">lection3</string>
+
+    <string name="sign_in">Войти</string>
+    <string name="sign_in_title">@string/sign_in</string>
+    <string name="sign_in_login_hint">Логин</string>
+    <string name="sign_in_password_hint">Пароль</string>
+    <string name="sign_in_action">@string/sign_in</string>
+    <string name="error_text">Ошибка %s()</string>
+    <string name="inStock_true">%s (в наличии) \n</string>
+    <string name="inStock_false">%s (нет в наличии) \n</string>
+    <string name="button_start">Начать</string>
+    <string name="button_error">Повторить</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <color name="background">#dddddd</color>
+
+
+    <string name="load_error">Oops, can\'t load data</string>
+    <string name="try_again">Повторить</string>
+    <string name="enable_errors">Enable Errors</string>
+    <!-- Profile fragment -->
+    <string name="name_surname_profile_text">%s %s</string>
+    <string name="text_version">Приложение 1.0.0 (117)</string>
+</resources>
