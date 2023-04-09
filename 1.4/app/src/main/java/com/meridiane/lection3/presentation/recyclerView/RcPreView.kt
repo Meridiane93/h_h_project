@@ -11,7 +11,7 @@ import com.meridiane.lection3.R
 
 class RcPreView(
     private val list: MutableList<Int?>,
-    private var onItemClicked: ((image: Int?) -> Unit)
+    //private var onItemClicked: ((image: Int?) -> Unit)
 ) :
     RecyclerView.Adapter<RcPreView.ImageHolder>() {
 
@@ -33,9 +33,9 @@ class RcPreView(
             if (image == null) imageView.load(R.drawable.default_image_pre_view)
             else imageView.load(image)
 
-            imageView.setOnClickListener {
-                onItemClicked(image)
-            }
+//            imageView.setOnClickListener {
+//                onItemClicked(image)
+//            }
         }
     }
 

@@ -76,6 +76,15 @@
         <item name="android:textColor">@color/error_text</item>
     </style>
 
+    <style name="AppBottomSheetDialogTheme"
+        parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/AppModalStyle</item>
+    </style>
+    <style name="AppModalStyle"
+        parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/bottom_dialog</item>
+    </style>
+
     <style name="Theme.Cowboys.ShapeAppearanceTextInputLayout" parent="Theme.Cowboys"/>
 
 </resources>

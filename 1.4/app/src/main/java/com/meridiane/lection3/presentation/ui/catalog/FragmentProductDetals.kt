@@ -1,5 +1,7 @@
 package com.meridiane.lection3.presentation.ui.catalog
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -80,6 +82,7 @@ class FragmentProductDetails : Fragment() {
             binding.textInput.setText(result)
         }
         val modalBottomSheet = BottomDialogFragment()
+        modalBottomSheet.dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         modalBottomSheet.show(childFragmentManager, BottomDialogFragment.TAG)
 
     }
