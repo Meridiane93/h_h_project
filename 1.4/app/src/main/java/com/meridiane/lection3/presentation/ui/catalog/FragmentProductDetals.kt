@@ -5,14 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.meridiane.lection3.Constants
-import com.meridiane.lection3.OnItemBottomClick
 import com.meridiane.lection3.R
 import com.meridiane.lection3.databinding.FragmentProductDetalsBinding
 import com.meridiane.lection3.presentation.recyclerView.RcPreView
@@ -23,7 +21,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class FragmentProductDetails : Fragment(),OnItemBottomClick {
+class FragmentProductDetails : Fragment() {
 
     private lateinit var binding: FragmentProductDetalsBinding
 
@@ -59,12 +57,11 @@ class FragmentProductDetails : Fragment(),OnItemBottomClick {
         }
 
         binding.textInput.setOnClickListener {
-            Toast.makeText(requireContext(), "Нажал", Toast.LENGTH_SHORT).show()
             showDialog()
         }
     }
 
-    private fun imagePage(image:Int?){
+    private fun imagePage(image: Int?) {
         val rcViewPager = RcViewPager(mutableListOf(image, null, null))
         binding.viewPager22.adapter = rcViewPager
     }
@@ -77,12 +74,13 @@ class FragmentProductDetails : Fragment(),OnItemBottomClick {
     }
 
     private fun showDialog() {
+        childFragmentManager.setFragmentResultListener("request_key",this) { _, bundle ->
+            val result = bundle.getString("bundleKey")
+
+            binding.textInput.setText(result)
+        }
         val modalBottomSheet = BottomDialogFragment()
         modalBottomSheet.show(childFragmentManager, BottomDialogFragment.TAG)
-    }
 
-    override fun size(size: String):String {
-        Toast.makeText(requireContext(),"$size",Toast.LENGTH_SHORT).show()
-        return String.toString()
     }
 }

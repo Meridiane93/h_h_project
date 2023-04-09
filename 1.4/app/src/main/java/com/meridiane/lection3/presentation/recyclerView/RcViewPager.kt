@@ -4,12 +4,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.meridiane.lection3.R
-
-//typealias TryAgainAction = () -> Unit
 
 class RcViewPager(private val list: MutableList<Int?>) :
     RecyclerView.Adapter<RcViewPager.ImageHolder>() {
@@ -34,9 +31,4 @@ class RcViewPager(private val list: MutableList<Int?>) :
         }
     }
 
-//    fun update(newList:ArrayList<Bitmap>){
-//        mainArray.clear()
-//        mainArray.addAll(newList)
-//        notifyDataSetChanged()
-//    }
 }

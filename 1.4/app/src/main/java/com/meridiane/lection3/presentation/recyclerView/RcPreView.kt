@@ -9,9 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.meridiane.lection3.R
 
-//typealias TryAgainAction = () -> Unit
-
-class RcPreView(private val list: MutableList<Int?>) :
+class RcPreView(
+    private val list: MutableList<Int?>,
+    private var onItemClicked: ((image: Int?) -> Unit)
+) :
     RecyclerView.Adapter<RcPreView.ImageHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageHolder {
@@ -24,19 +25,18 @@ class RcPreView(private val list: MutableList<Int?>) :
 
     override fun getItemCount(): Int = list.size
 
-    class ImageHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ImageHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         var imageView: ImageView = itemView.findViewById(R.id.imageRcView)
 
         fun setData(image: Int?) {
             if (image == null) imageView.load(R.drawable.default_image_pre_view)
             else imageView.load(image)
+
+            imageView.setOnClickListener {
+                onItemClicked(image)
+            }
         }
     }
 
-//    fun update(newList:ArrayList<Bitmap>){
-//        mainArray.clear()
-//        mainArray.addAll(newList)
-//        notifyDataSetChanged()
-//    }
 }

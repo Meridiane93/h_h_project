@@ -4,22 +4,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.core.os.bundleOf
+import androidx.fragment.app.setFragmentResult
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.meridiane.lection3.OnItemBottomClick
 import com.meridiane.lection3.databinding.BottomDialogLayoutBinding
 import com.meridiane.lection3.presentation.recyclerView.RcAdapterBottom
 
-open class BottomDialogFragment: BottomSheetDialogFragment() {
+open class BottomDialogFragment : BottomSheetDialogFragment() {
 
     private lateinit var binding: BottomDialogLayoutBinding
 
-    private val rcAdapterBottomAndPreView = RcAdapterBottom { result ->
-         val ob = object : OnItemBottomClick{
-             override fun size(size: String): String = result
-         }
-        ob.size(result)
+    private val rcAdapterBottomAndPreView = RcAdapterBottom { data ->
+        setFragmentResult("request_key", bundleOf("bundleKey" to data))
+        dismiss()
     }
 
     override fun onCreateView(
@@ -40,4 +38,5 @@ open class BottomDialogFragment: BottomSheetDialogFragment() {
     companion object {
         const val TAG = "BottomDialogFragment"
     }
+
 }

@@ -8,7 +8,7 @@ import com.meridiane.lection3.databinding.RcViewBottomBinding
 class RcAdapterBottom(private var onItemClicked: ((size: String) -> Unit)) :
     RecyclerView.Adapter<RcAdapterBottom.ImageHolder>() {
 
-    val mainArray = listOf("S", "M", "L", "XL") // список размеров
+    private val mainArray = listOf("S", "M", "L", "XL") // список размеров
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageHolder {
         val binding =
