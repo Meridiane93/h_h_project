@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/signInFragment">
+    <fragment
+        android:id="@+id/bookFragment"
+        android:name="com.meridiane.lection3.presentation.ui.catalog.BookFragment"
+        android:label="fragment_product_main"
+        tools:layout="@layout/fragment_product_main" >
+        <action
+            android:id="@+id/action_bookFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_bookFragment_to_fragmentProductDetails2"
+            app:destination="@id/fragmentProductDetails2" />
+    </fragment>
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="com.meridiane.lection3.presentation.ui.signin.SignInFragment"
+        android:label="fragment_sign_in"
+        tools:layout="@layout/fragment_sign_in" >
+        <action
+            android:id="@+id/action_signInFragment_to_bookFragment"
+            app:destination="@id/bookFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.meridiane.lection3.presentation.ui.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_bookFragment"
+            app:destination="@id/bookFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentProductDetails2"
+        android:name="com.meridiane.lection3.presentation.ui.catalog.FragmentProductDetails"
+        android:label="fragment_product_detals"
+        tools:layout="@layout/fragment_product_detals" >
+        <action
+            android:id="@+id/action_fragmentProductDetails2_to_bookFragment"
+            app:destination="@id/bookFragment" />
+    </fragment>
+</navigation>
