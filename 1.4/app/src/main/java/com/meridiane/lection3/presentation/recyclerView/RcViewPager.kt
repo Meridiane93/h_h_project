@@ -21,7 +21,7 @@ class RcViewPager(private val list: MutableList<Int?>) :
 
     override fun getItemCount(): Int = list.size
 
-    class ImageHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ImageHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         var imageView: ImageView = itemView.findViewById(R.id.imagePage)
 
@@ -29,6 +29,7 @@ class RcViewPager(private val list: MutableList<Int?>) :
             if (image == null) imageView.load(R.drawable.default_image_view_pager)
             else imageView.load(image)
         }
-    }
 
+
+    }
 }

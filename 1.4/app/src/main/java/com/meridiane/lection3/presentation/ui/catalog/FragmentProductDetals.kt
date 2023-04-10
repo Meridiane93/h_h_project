@@ -61,15 +61,20 @@ class FragmentProductDetails : Fragment() {
         binding.textInput.setOnClickListener {
             showDialog()
         }
+
     }
+
 
     private fun imagePage(image: Int?) {
         val rcViewPager = RcViewPager(mutableListOf(image, null, null))
-        binding.viewPager22.adapter = rcViewPager
+        binding.viewPager2.adapter = rcViewPager
     }
 
     private fun preView(string: Int?) {
-        val rcPreView = RcPreView(mutableListOf(string, null, null))
+        val rcPreView = RcPreView(mutableListOf(string, null, null)) { item ->
+            binding.viewPager2.currentItem = item
+        }
+
         binding.rcPreView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.rcPreView.adapter = rcPreView
@@ -84,6 +89,6 @@ class FragmentProductDetails : Fragment() {
         val modalBottomSheet = BottomDialogFragment()
         modalBottomSheet.dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         modalBottomSheet.show(childFragmentManager, BottomDialogFragment.TAG)
-
     }
+
 }
