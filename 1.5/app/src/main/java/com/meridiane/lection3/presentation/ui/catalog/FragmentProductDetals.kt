@@ -55,7 +55,7 @@ class FragmentProductDetails : Fragment() {
         }
 
         binding.btBack.setOnClickListener {
-            findNavController().navigate(R.id.bookFragment)
+            findNavController().popBackStack()
         }
 
         binding.textInput.setOnClickListener {

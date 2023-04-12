@@ -45,7 +45,7 @@ class ProfileFragment : Fragment() {
 
         with(binding) {
             btBack.setOnClickListener {
-                findNavController().navigate(R.id.bookFragment)
+                findNavController().popBackStack()
             }
 
             imageLogout.setOnClickListener {

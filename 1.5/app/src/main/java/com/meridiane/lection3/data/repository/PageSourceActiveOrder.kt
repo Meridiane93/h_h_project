@@ -4,7 +4,7 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.meridiane.lection3.domain.models.Order
 
-class PageSourceAllOrder(
+class PageSourceActiveOrder(
     private val repository: MockRepository,
 ) : PagingSource<Int, Order>() {
 
@@ -12,7 +12,7 @@ class PageSourceAllOrder(
 
         return try {
 //            val pageNumber = params.key ?: 0
-            val product = repository.getAllOrder()
+            val product = repository.getActiveOrder()
 //            val prevKey = if (pageNumber > 0) pageNumber - 1 else null
 //            val nextKey = if (product.isNotEmpty()) pageNumber + 1 else null
 

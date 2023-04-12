@@ -17,7 +17,7 @@ class MockRepository :
     InterfaceGetProductsRepository,
     InterfaceGetProfileRepository,
     InterfaceGetProductDetailsRepository,
-    InterfaceGetAllOrdersRepository{
+    InterfaceGetActiveOrdersRepository{
 
     override suspend fun getProfile(): Result<Profile> {
         delay(3000L)
@@ -173,6 +173,66 @@ class MockRepository :
         )
     }
 
+    override suspend fun getActiveOrder(): List<Order> {
+        randomDelay()
+        return listOf(
+            Order(
+                "1",
+                "Заказ №123 от 19.09.21 18:03",
+                "В работе",
+                "4 × M • Nike Tampa Bay Buccaneers Super Bowl LV",
+                "Дата доставки: 24.09.21 в 16:00",
+                "Адрес доставки: г. Саранск, ул. Демократическая, 14",
+                R.drawable.reposit_id1
+            ),
+            Order(
+                "2",
+                "Заказ №123 от 19.09.21 18:03",
+                "В работе",
+                "4 × M • Nike Tampa Bay Buccaneers Super Bowl LV",
+                "Дата доставки: 24.09.21 в 16:00",
+                "Адрес доставки: г. Саранск, ул. Демократическая, 14",
+                R.drawable.reposit_id2
+            ),
+            Order(
+                "3",
+                "Заказ №123 от 19.09.21 18:03",
+                "В работе",
+                "4 × M • Nike Tampa Bay Buccaneers Super Bowl LV",
+                "Дата доставки: 24.09.21 в 16:00",
+                "Адрес доставки: г. Саранск, ул. Демократическая, 14",
+                R.drawable.reposit_id3
+            ),
+            Order(
+                "4",
+                "Заказ №123 от 19.09.21 18:03",
+                "В работе",
+                "4 × M • Nike Tampa Bay Buccaneers Super Bowl LV",
+                "Дата доставки: 24.09.21 в 16:00",
+                "Адрес доставки: г. Саранск, ул. Демократическая, 14",
+                R.drawable.reposit_id4
+            ),
+            Order(
+                "5",
+                "Заказ №123 от 19.09.21 18:03",
+                "В работе",
+                "4 × M • Nike Tampa Bay Buccaneers Super Bowl LV",
+                "Дата доставки: 24.09.21 в 16:00",
+                "Адрес доставки: г. Саранск, ул. Демократическая, 14",
+                R.drawable.reposit_id5
+            )
+        )
+    }
+
+   override suspend fun getSizeAllOrder() : Int =
+        getAllOrder().size
+
+
+
+   override suspend fun getSizeActiveOrder() : Int =
+        getActiveOrder().size
+
+
     override fun getList(): Flow<PagingData<Product>> {
         return Pager(
             config = PagingConfig(
@@ -192,11 +252,25 @@ class MockRepository :
             config = PagingConfig(
                 pageSize = 2,
                 enablePlaceholders = false,
-                initialLoadSize = 2,
+                initialLoadSize = 4,
                 prefetchDistance = 2 / 2
             ),
             pagingSourceFactory = {
                 PageSourceAllOrder(this)
+            }
+        ).flow
+    }
+
+    override fun getListActiveOrder(): Flow<PagingData<Order>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = 2,
+                enablePlaceholders = false,
+                initialLoadSize = 2,
+                prefetchDistance = 2 / 2
+            ),
+            pagingSourceFactory = {
+                PageSourceActiveOrder(this)
             }
         ).flow
     }
@@ -211,7 +285,7 @@ class MockRepository :
     }
 
     private fun <T> randomResult2(data: T): Result<T> =
-        if ((0..100).random() < 5) {
+        if ((0..100).random() < 90) {
             Result.failure(RuntimeException())
         } else {
             Result.success(data)

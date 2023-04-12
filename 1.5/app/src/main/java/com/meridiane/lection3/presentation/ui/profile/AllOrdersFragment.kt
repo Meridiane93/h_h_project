@@ -6,15 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.paging.PagingData
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.meridiane.lection3.databinding.FragmentActiveOrdersBinding
 import com.meridiane.lection3.databinding.FragmentAllOrdersBinding
-import com.meridiane.lection3.domain.models.Order
 import com.meridiane.lection3.presentation.recyclerView.*
+import com.meridiane.lection3.presentation.ui.catalog.ProgressContainer
 import com.meridiane.lection3.presentation.viewModel.OrdersViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -44,15 +44,41 @@ class AllOrdersFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.containerState.state = ProgressContainer.State.Loading
+
         setupUsersList()
+        viewModel.getOrders()
 
         lifecycleScope.launch {
             viewModel.ordersState.collectLatest {
                 allOrdersAdapter.submitData(it)
-                Toast.makeText(requireContext(),"${allOrdersAdapter.submitData(it)}", Toast.LENGTH_SHORT).show()
             }
         }
 
+        stateAdapter(binding)
+
+    }
+
+    private fun stateAdapter(binding: FragmentAllOrdersBinding){
+        allOrdersAdapter.addLoadStateListener { state ->
+
+            binding.containerState.state = when (state.source.refresh) {
+                is LoadState.Error -> {
+                    ProgressContainer.State.Notice("Ошибка")
+                }
+                is LoadState.Loading -> {
+                    ProgressContainer.State.Loading
+                }
+                is LoadState.NotLoading -> {
+                    if (allOrdersAdapter.itemCount == 0) {
+                        ProgressContainer.State.Notice("Пустота")
+                    } else {
+                        ProgressContainer.State.Success
+                    }
+                }
+
+            }
+        }
     }
 
     private fun setupUsersList() {

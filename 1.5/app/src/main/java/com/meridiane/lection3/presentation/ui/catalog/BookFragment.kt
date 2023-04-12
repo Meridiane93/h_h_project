@@ -38,6 +38,7 @@ class BookFragment : Fragment() {
         }
     }
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -48,8 +49,7 @@ class BookFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        getData(binding)
+        binding.container.state = ProgressContainer.State.Loading
         setupUsersList()
 
         lifecycleScope.launch {
@@ -59,7 +59,7 @@ class BookFragment : Fragment() {
         }
 
         binding.container.setListener {
-            getData(binding)
+            binding.container.state = ProgressContainer.State.Loading
             viewModel.getProduct()
         }
 
@@ -108,16 +108,6 @@ class BookFragment : Fragment() {
 
             }
         }
-    }
-
-    private fun getData(binding: FragmentProductMainBinding) {
-        binding.container.state = ProgressContainer.State.Loading
-        binding.container.visibility = View.VISIBLE
-    }
-
-    companion object {
-        @JvmStatic
-        fun newInstance() = BookFragment()
     }
 
 }

@@ -7,29 +7,15 @@
     android:layout_height="match_parent"
     tools:context=".presentation.ui.profile.MyOrdersFragment">
 
-    <com.meridiane.lection3.presentation.ui.catalog.ProgressContainer
-        android:id="@+id/container"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginStart="14dp"
-        android:layout_marginEnd="14dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialToolbar">
-
-    </com.meridiane.lection3.presentation.ui.catalog.ProgressContainer>
-
     <com.google.android.material.appbar.MaterialToolbar
-        android:layout_marginTop="14dp"
         android:id="@+id/materialToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:background="@color/purple_700"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/bt_back"
@@ -71,11 +57,22 @@
         android:id="@+id/view_pager_my_orders"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tabs_layout" />
+        app:layout_constraintTop_toBottomOf="@+id/tabs_layout" >
+
+    </androidx.viewpager2.widget.ViewPager2>
+
+    <com.meridiane.lection3.presentation.ui.catalog.ProgressContainer
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/view_pager_my_orders"
+        app:layout_constraintTop_toBottomOf="@+id/materialToolbar"
+        tools:layout_editor_absoluteX="14dp">
+
+    </com.meridiane.lection3.presentation.ui.catalog.ProgressContainer>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

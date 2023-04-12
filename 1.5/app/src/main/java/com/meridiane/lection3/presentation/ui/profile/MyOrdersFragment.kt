@@ -1,18 +1,16 @@
 package com.meridiane.lection3.presentation.ui.profile
 
-import android.R
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.paging.LoadState
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayoutMediator
+import com.meridiane.lection3.R
 import com.meridiane.lection3.databinding.FragmentMyOrdersBinding
-import com.meridiane.lection3.presentation.recyclerView.AllOrderAdapter
 import com.meridiane.lection3.presentation.recyclerView.PagerAdapterMyOrders
 import com.meridiane.lection3.presentation.ui.catalog.ProgressContainer
 import com.meridiane.lection3.presentation.viewModel.OrdersViewModel
@@ -20,18 +18,11 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-
 @AndroidEntryPoint
 class MyOrdersFragment : Fragment() {
 
     private lateinit var binding: FragmentMyOrdersBinding
     private val viewModel: OrdersViewModel by viewModels()
-
-    private val allOrdersAdapter by lazy {
-        AllOrderAdapter { order ->
-            Toast.makeText(requireContext(), "$order", Toast.LENGTH_SHORT).show()
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,43 +34,42 @@ class MyOrdersFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initial()
-        viewModel.getOrders()
+        binding.container.state = ProgressContainer.State.Loading
+        binding.container.visibility = View.VISIBLE
 
-//        setFragmentResult("request_key", bundleOf("bundleKey" to data))
+        binding.btBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
 
-//        lifecycleScope.launch {
-//            viewModel.ordersState.collectLatest {
-//
-//            }
-//        }
+        var sizeAllOrder = 0
+        var sizeActiveOrder = 0
+        viewModel.getAllOrderSize()
+        viewModel.getActiveOrderSize()
 
-        allOrdersAdapter.addLoadStateListener { state ->
+        lifecycleScope.launch {
+            viewModel.stateFlowAllOrder.collectLatest {
+                sizeAllOrder = it
+                if(sizeActiveOrder != 0) (initial(it,sizeActiveOrder))
+            }
+        }
 
-            binding.container.state = when (state.source.refresh) {
-                is LoadState.Error -> ProgressContainer.State.Notice("Ошибка")
-                is LoadState.Loading -> ProgressContainer.State.Loading
-                is LoadState.NotLoading -> {
-                    if (allOrdersAdapter.itemCount == 0) {
-                        ProgressContainer.State.Notice("Пустота")
-
-                    } else {
-                        ProgressContainer.State.Success
-                    }
-                }
-
+        lifecycleScope.launch {
+            viewModel.stateFlowActiveOrder.collectLatest {
+                sizeActiveOrder = it
+                if(sizeAllOrder != 0) (initial(sizeAllOrder,it))
             }
         }
 
     }
 
-    private fun initial() {
+    private fun initial(c1:Int , c2:Int) {
+        binding.container.state = ProgressContainer.State.Success
         binding.viewPagerMyOrders.adapter = PagerAdapterMyOrders(this)
         binding.tabsLayout.tabIconTint = null
         TabLayoutMediator(binding.tabsLayout, binding.viewPagerMyOrders) { tab, pos ->
             when (pos) {
-                0 -> tab.text = "Все "
-                1 -> tab.text = "Активные "
+                0 -> tab.text = "Все $c1"
+                1 -> tab.text = "Активные $c2"
             }
         }.attach()
 

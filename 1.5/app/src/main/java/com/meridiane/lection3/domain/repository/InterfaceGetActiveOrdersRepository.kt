@@ -4,8 +4,14 @@ import androidx.paging.PagingData
 import com.meridiane.lection3.domain.models.Order
 import kotlinx.coroutines.flow.Flow
 
-interface InterfaceGetAllOrdersRepository {
+interface InterfaceGetActiveOrdersRepository {
+    suspend fun getActiveOrder(): List<Order>
+
     suspend fun getAllOrder(): List<Order>
 
     fun getListOrder(): Flow<PagingData<Order>>
+    fun getListActiveOrder(): Flow<PagingData<Order>>
+
+    suspend fun getSizeAllOrder() : Int
+    suspend fun getSizeActiveOrder() : Int
 }
