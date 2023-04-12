@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground">
+
+
+    <ImageView
+        android:id="@+id/imageCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/linearBook"
+        app:srcCompat="@drawable/ic_cancel" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
+        style="@style/ImageRcViewProduct"
+        app:cardCornerRadius="@dimen/normal_100"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/image_product"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:srcCompat="@tools:sample/avatars" />
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:id="@+id/linearBook"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/normal_100"
+        android:layout_marginEnd="@dimen/normal_100"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cardView2"
+        app:layout_constraintTop_toTopOf="@+id/cardView2">
+
+        <TextView
+            android:id="@+id/textOrder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Заказ №123 от 19.09.21 18:03"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="В работе"
+            android:textColor="@color/background_hit_fragment_details_product"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textSize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4 × M • Nike Tampa Bay Buccaneers Super Bowl LV"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearData"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/normal_100"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="@dimen/normal_100"
+        android:layout_marginBottom="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cardView2"
+        app:layout_constraintTop_toBottomOf="@+id/linearBook">
+
+        <TextView
+            android:id="@+id/textdata"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Дата доставки: 24.09.21 в 16:00"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/textaddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Адрес доставки: г. Саранск, ул. Демократическая, 14"
+            android:textSize="10sp" />
+
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginBottom="4dp"
+        android:background="@color/purple_700"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/linearBook"
+        app:layout_constraintStart_toStartOf="@+id/cardView2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
