@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.ui.MapActivity">
+
+    <com.yandex.mapkit.mapview.MapView
+        android:id="@+id/mapview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" >
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view_map"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="48dp"
+            android:backgroundTint="@color/background"
+            app:cardCornerRadius="40dp">
+
+            <ImageView
+                android:id="@+id/bt_my_location"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="bottom|end"
+                android:layout_margin="8dp"
+                app:srcCompat="@drawable/my_location" />
+        </androidx.cardview.widget.CardView>
+    </com.yandex.mapkit.mapview.MapView>
+
+    <EditText
+        android:id="@+id/edit_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/search_background"
+        android:hint="@string/search_text"
+        android:imeOptions="actionSearch"
+        android:inputType="text"
+        android:maxLines="1"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
