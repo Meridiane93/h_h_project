@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="photo">
+        <item>Сделать снимок</item>
+        <item>Выбрать из галереи</item>
+    </string-array>
+
+    <string-array name="work">
+        <item>Разработчик</item>
+        <item>Тестировщик</item>
+        <item>Менеджер</item>
+        <item>Другое</item>
+    </string-array>
+
+</resources>

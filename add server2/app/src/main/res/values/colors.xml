@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="name_clothes">#A4A4A4</color>
+    <color name="black_20pc">#33000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="white_50pc">#80FFFFFF</color>
+    <color name="white_10pc">#03FFFFFF</color>
+    <color name="smalt">#003594</color>
+    <color name="color_navigation_bar">#33003594</color>
+    <color name="silver_chalice">#A4A4A4</color>
+    <color name="seashell">#F1F1F1</color>
+    <color name="error_text">#F62525</color>
+    <color name="background_logout">#FF5252</color>
+    <color name="background_hit_fragment_details_product">#2E7D32</color>
+
+    <color name="background_profile">#F4F4F4</color>
+    <color name="text_version">#A4A4A4</color>
+    <color name="text_field_box_stroke_color">#003594</color>
+    <color name="test">#F1F1F1</color>
+    <color name="shape_search">#189CF1</color>
+
+</resources>
