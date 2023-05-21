@@ -4,7 +4,7 @@ import com.meridiane.lection3.data.entity.AddOrderData
 import com.meridiane.lection3.data.entity.product.DetailProduct
 import com.meridiane.lection3.data.entity.authorization.AuthorizationDataModel
 import com.meridiane.lection3.data.entity.authorization.SignInData
-import com.meridiane.lection3.data.entity.order.AddOrderAnswer
+import com.meridiane.lection3.data.entity.order.AddOrderEntity
 import com.meridiane.lection3.data.entity.order.OrderData
 import com.meridiane.lection3.data.entity.order.cancel.CancelData
 import com.meridiane.lection3.data.entity.product.DataProduct
@@ -42,7 +42,7 @@ interface CowboysApi {
     ): OrderData
 
     @POST("orders/checkout")
-    suspend fun addOrder(@Body params: AddOrderData): AddOrderAnswer
+    suspend fun addOrder(@Body params: AddOrderData): AddOrderEntity
 
     @PUT("orders/{orderId}")
     suspend fun getCancelOrder(

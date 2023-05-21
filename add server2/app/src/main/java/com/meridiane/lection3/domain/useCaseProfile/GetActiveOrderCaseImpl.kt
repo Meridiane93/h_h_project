@@ -1,6 +1,5 @@
 package com.meridiane.lection3.domain.useCaseProfile
 
-import android.util.Log
 import androidx.paging.PagingData
 import com.meridiane.lection3.domain.entity.AllOrder
 import com.meridiane.lection3.domain.repository.InterfaceGetActiveOrdersRepository

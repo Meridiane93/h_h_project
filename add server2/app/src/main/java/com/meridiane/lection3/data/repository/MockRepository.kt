@@ -1,6 +1,5 @@
 package com.meridiane.lection3.data.repository
 
-import android.util.Log
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
@@ -14,6 +13,7 @@ import com.meridiane.lection3.data.pagination.PageSourceAllOrder
 import com.meridiane.lection3.data.pagination.ProductPageLoader
 import com.meridiane.lection3.data.storage.TokenStorage
 import com.meridiane.lection3.domain.entity.AddOrder
+import com.meridiane.lection3.domain.entity.AddOrderEntityDomain
 import com.meridiane.lection3.domain.entity.AllOrder
 import com.meridiane.lection3.domain.entity.product.Product
 import com.meridiane.lection3.domain.entity.Profile
@@ -125,8 +125,8 @@ class MockRepository(
     }
 
     // добавить заказ на сервер
-    override suspend fun addOrder(order: AddOrder): String =
-        retrofit.addOrder(order.toAddOrderData()).title!!
+    override suspend fun addOrder(order: AddOrder): AddOrderEntityDomain =
+        retrofit.addOrder(order.toAddOrderData()).data.toAddOrder()
 
     // отменить заказ на сервере
     override suspend fun cancelOrderInterface(id: String): AllOrder =

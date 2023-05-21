@@ -20,7 +20,7 @@ class GetProductDetailsUseCaseImpl(
 
     override suspend fun addOrder(order: AddOrder): Result<String> {
 
-        val answer = interfaceGetProductDetailsRepository.addOrder(order)
+        val answer = interfaceGetProductDetailsRepository.addOrder(order).status
         return try {
             Log.d("MyTag","Try $answer")
             Result.success(answer)

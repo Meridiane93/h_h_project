@@ -11,6 +11,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -102,6 +103,24 @@ class AddOrderFragment : Fragment() {
         }
 
         lifecycleScope.launch {
+            viewModel.successState.collectLatest { succes ->
+                if(succes != ""){
+                    Toast.makeText(requireContext(), succes,Toast.LENGTH_SHORT).show()
+                    findNavController().navigate(R.id.myOrdersFragment)
+                }
+
+            }
+        }
+
+        lifecycleScope.launch{
+            viewModel.errorState.collectLatest {error ->
+                if(error != "") {
+                    Toast.makeText(requireContext(), error, Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
+        lifecycleScope.launch {
             viewModel.stateFlow.collect { value ->
                 binding.materialButtonOrder.setText(
                     getString(R.string.sum_text_order, prise * value)
@@ -169,8 +188,6 @@ class AddOrderFragment : Fragment() {
             val currentDate = sdf.format(Date())
 
             time = "$year-$month-${day}T${currentDate}.512Z"
-            Log.d("MyTag", time)
-                // LocalDateTime.now().toString()
 
             val dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK)
 
@@ -222,7 +239,7 @@ class AddOrderFragment : Fragment() {
                     Apartment = binding.textHome.text.toString(),
                     Etd = time
                 )
-                Log.d("MyTag", "Order: $order")
+
                 viewModel.addOrder(order)
             }
 

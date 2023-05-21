@@ -17,9 +17,6 @@ import javax.inject.Inject
 class OrdersViewModel @Inject constructor(private val getActiveOrderInterface: GetActiveOrderInterface) :
     ViewModel() {
 
-    private var allOrder = AllOrder()
-    private val localChangesFlow = MutableStateFlow(OnChange(allOrder))
-
     private var _ordersState = MutableStateFlow<PagingData<AllOrder>>(PagingData.empty())
     val ordersState: StateFlow<PagingData<AllOrder>> = _ordersState
 
@@ -51,12 +48,6 @@ class OrdersViewModel @Inject constructor(private val getActiveOrderInterface: G
                 Log.d("MyTag", "cancelOrder $answer")
                     _ordersStateCancel.value = answer.getOrNull()!!
 
-
-                _ordersState.value = combine(
-                    _ordersStateCancel,
-                    _ordersState.debounce(50),
-                    this::merge
-                )
             } catch (e: Exception) {
                 Log.d("MyTag", "Except $e")
                 _ordersStateCancelExeption.value = e.message.toString()
@@ -64,14 +55,10 @@ class OrdersViewModel @Inject constructor(private val getActiveOrderInterface: G
         }
     }
 
-
-
-
     override fun onCleared() {
         viewModelScope.cancel()
     }
 
-    class OnChange<T>(val value: T)
 }
 
 

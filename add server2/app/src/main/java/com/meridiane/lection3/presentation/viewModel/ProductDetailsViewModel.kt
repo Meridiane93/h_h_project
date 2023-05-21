@@ -25,6 +25,9 @@ class ProductDetailsViewModel @Inject constructor(
     private var _productsState = MutableStateFlow(ProductDetail())
     val productsState: StateFlow<ProductDetail> = _productsState
 
+    val errorState = MutableStateFlow("")
+    val successState = MutableStateFlow("")
+
     fun getProductDetails(id: String) {
 
         viewModelScope.launch {
@@ -39,10 +42,12 @@ class ProductDetailsViewModel @Inject constructor(
     fun addOrder(order: AddOrder) {
         viewModelScope.launch {
             try {
-                val getProf = getProductDetailInterface.addOrder(order)
-                Log.d("MyTag", getProf.isSuccess.toString())
+                val getProf = getProductDetailInterface.addOrder(order).isSuccess.toString()
+                Log.d("MyTag", getProf)
                 Log.d("MyTag", "VM $getProf")
+                successState.value = getProf
             } catch (e: Exception) {
+                errorState.value = e.toString()
                 Log.d("MyTag", "Except $e")
             }
         }
