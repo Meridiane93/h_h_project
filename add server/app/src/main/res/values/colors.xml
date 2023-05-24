@@ -9,9 +9,9 @@
     <color name="black">#FF000000</color>
     <color name="name_clothes">#A4A4A4</color>
     <color name="black_20pc">#33000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="white">#FFFFFF</color>
     <color name="white_50pc">#80FFFFFF</color>
-    <color name="white_10pc">#1AFFFFFF</color>
+    <color name="white_10pc">#03FFFFFF</color>
     <color name="smalt">#003594</color>
     <color name="color_navigation_bar">#33003594</color>
     <color name="silver_chalice">#A4A4A4</color>
@@ -23,5 +23,7 @@
     <color name="background_profile">#F4F4F4</color>
     <color name="text_version">#A4A4A4</color>
     <color name="text_field_box_stroke_color">#003594</color>
+    <color name="test">#F1F1F1</color>
+    <color name="shape_search">#189CF1</color>
 
 </resources>

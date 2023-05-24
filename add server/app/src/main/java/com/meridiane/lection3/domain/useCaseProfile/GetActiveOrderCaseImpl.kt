@@ -1,42 +1,32 @@
 package com.meridiane.lection3.domain.useCaseProfile
 
 import androidx.paging.PagingData
-import com.meridiane.lection3.domain.entity.Order
+import com.meridiane.lection3.domain.entity.AllOrder
 import com.meridiane.lection3.domain.repository.InterfaceGetActiveOrdersRepository
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 
 interface GetActiveOrderInterface {
-    suspend fun getActiveOrder(): List<Order>
-
-    fun getListOrder(): Flow<PagingData<Order>>
-
-    suspend fun getAllOrder(): List<Order>
-
-    fun getListActiveOrder(): Flow<PagingData<Order>>
-
-    suspend fun getSizeAllOrder(): Int
-    suspend fun getSizeActiveOrder(): Int
+   suspend fun getListOrder(): Flow<PagingData<AllOrder>>
+   suspend fun cancelOrder(id: String): Flow<AllOrder>
 }
 
 class GetActiveOrderImpl(private val interfaceGetActiveOrdersRepository: InterfaceGetActiveOrdersRepository) :
     GetActiveOrderInterface {
-    override suspend fun getActiveOrder(): List<Order> =
-        interfaceGetActiveOrdersRepository.getActiveOrder()
 
-    override fun getListOrder(): Flow<PagingData<Order>> =
-        interfaceGetActiveOrdersRepository.getListOrder()
+    override suspend fun getListOrder(): Flow<PagingData<AllOrder>> =
+    interfaceGetActiveOrdersRepository.getOrders()
 
-    override suspend fun getAllOrder(): List<Order> =
-        interfaceGetActiveOrdersRepository.getAllOrder()
+    override suspend fun cancelOrder(id: String): Flow<AllOrder> = flow {
+       val answer =  interfaceGetActiveOrdersRepository.cancelOrderInterface(id)
+         try {
+            Result.success(answer)
+        }
+        catch (e:Exception){
+            Result.failure(e)
+        }
+    }
 
-    override fun getListActiveOrder(): Flow<PagingData<Order>> =
-        interfaceGetActiveOrdersRepository.getListActiveOrder()
 
-    override suspend fun getSizeAllOrder(): Int =
-        interfaceGetActiveOrdersRepository.getSizeAllOrder()
-
-
-    override suspend fun getSizeActiveOrder(): Int =
-        interfaceGetActiveOrdersRepository.getSizeActiveOrder()
 
 }

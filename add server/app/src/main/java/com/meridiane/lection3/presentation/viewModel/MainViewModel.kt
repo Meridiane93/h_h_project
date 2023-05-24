@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.meridiane.lection3.domain.entity.Product
+import com.meridiane.lection3.domain.entity.product.Product
 import com.meridiane.lection3.domain.useCaseProducts.GetProductsInterface
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*

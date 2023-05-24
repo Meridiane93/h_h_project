@@ -95,6 +95,7 @@
             app:layout_constraintEnd_toEndOf="@+id/cardPhoto"
             app:layout_constraintStart_toStartOf="@+id/cardPhoto"
             app:layout_constraintTop_toBottomOf="@+id/cardPhoto" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.appbar.AppBarLayout
@@ -147,41 +148,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <com.facebook.shimmer.ShimmerFrameLayout
-        android:id="@+id/shimmer_view_container"
+    <com.meridiane.lection3.presentation.ui.catalog.ProgressContainer
+        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/constraintLayout"
-        shimmer:duration="800"
-        tools:visibility="gone">
+        android:visibility="visible"
+        shimmer:layout_constraintBottom_toBottomOf="parent"
+        shimmer:layout_constraintEnd_toEndOf="parent"
+        shimmer:layout_constraintStart_toStartOf="parent"
+        shimmer:layout_constraintTop_toBottomOf="@+id/coordinatorLayout"
+        tools:layout_editor_absoluteY="80dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            tools:visibility="visible">
-
-            <include layout="@layout/data_placeholder_layout" />
-
-            <include layout="@layout/data_placeholder_layout" />
-
-            <include layout="@layout/data_placeholder_layout" />
-
-            <include layout="@layout/data_placeholder_layout" />
-
-            <include layout="@layout/data_placeholder_layout" />
-
-            <include layout="@layout/data_placeholder_layout" />
-
-            <include layout="@layout/data_placeholder_layout" />
-        </LinearLayout>
-
-
-    </com.facebook.shimmer.ShimmerFrameLayout>
+    </com.meridiane.lection3.presentation.ui.catalog.ProgressContainer>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

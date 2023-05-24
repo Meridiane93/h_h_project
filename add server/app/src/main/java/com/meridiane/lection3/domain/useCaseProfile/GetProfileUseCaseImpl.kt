@@ -9,7 +9,14 @@ interface GetProfile{
 
 class GetProfileUseCaseImpl(private val interfaceGetProfileRepository: InterfaceGetProfileRepository) : GetProfile {
 
-    override suspend fun authorization(): Result<Profile> =
-        interfaceGetProfileRepository.getProfile()
+    override suspend fun authorization(): Result<Profile> {
+       val answer = interfaceGetProfileRepository.getProfile()
+        return try {
+            Result.success(answer)
+        }
+        catch (e:Exception){
+            Result.failure(e)
+        }
+    }
 
 }

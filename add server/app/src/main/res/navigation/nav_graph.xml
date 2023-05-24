@@ -36,6 +36,9 @@
         <action
             android:id="@+id/action_profileFragment_to_myOrdersFragment"
             app:destination="@id/myOrdersFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_fragmentProfileTransform"
+            app:destination="@id/fragmentProfileTransform" />
     </fragment>
     <fragment
         android:id="@+id/fragmentProductDetails2"
@@ -45,14 +48,27 @@
         <action
             android:id="@+id/action_fragmentProductDetails2_to_bookFragment"
             app:destination="@id/bookFragment" />
+        <action
+            android:id="@+id/action_fragmentProductDetails2_to_addOrderFragment2"
+            app:destination="@id/addOrderFragment2" />
     </fragment>
     <fragment
         android:id="@+id/myOrdersFragment"
         android:name="com.meridiane.lection3.presentation.ui.profile.MyOrdersFragment"
         android:label="fragment_my_orders"
-        tools:layout="@layout/fragment_my_orders" >
+        tools:layout="@layout/fragment_my_orders" />
+    <fragment
+        android:id="@+id/addOrderFragment2"
+        android:name="com.meridiane.lection3.presentation.ui.catalog.AddOrderFragment"
+        android:label="fragment_add_order"
+        tools:layout="@layout/fragment_add_order" >
         <action
-            android:id="@+id/action_myOrdersFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
+            android:id="@+id/action_addOrderFragment2_to_myOrdersFragment"
+            app:destination="@id/myOrdersFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/fragmentProfileTransform"
+        android:name="com.meridiane.lection3.presentation.ui.profile.FragmentProfileTransform"
+        android:label="fragment_profile_transform"
+        tools:layout="@layout/fragment_profile_transform" />
 </navigation>

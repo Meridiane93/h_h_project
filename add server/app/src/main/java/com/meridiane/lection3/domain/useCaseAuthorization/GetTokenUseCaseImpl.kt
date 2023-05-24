@@ -5,7 +5,7 @@ import com.meridiane.lection3.domain.repository.InterfaceGetToken
 interface GetToken {
     fun getTokenBd(): String
 
-    fun getTokenServer(login: String, password: String): Result.Companion
+    suspend fun getTokenServer(login: String, password: String): Result<String?>
 }
 
 class GetTokenUseCaseImpl(private val interfaceGetToken: InterfaceGetToken) :
@@ -13,7 +13,15 @@ class GetTokenUseCaseImpl(private val interfaceGetToken: InterfaceGetToken) :
 
     override fun getTokenBd(): String = interfaceGetToken.getTokenBd()
 
-    override fun getTokenServer(login: String, password: String): Result.Companion =
-        interfaceGetToken.getTokenServer(login, password)
+    override suspend fun getTokenServer(login: String, password: String): Result<String?> {
 
+        val answer = interfaceGetToken.getTokenServer(login, password)
+
+       return try {
+            Result.success(answer)
+        }
+        catch (e:Exception){
+            Result.failure(e)
+        }
+    }
 }

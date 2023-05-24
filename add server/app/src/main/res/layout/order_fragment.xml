@@ -7,12 +7,23 @@
     android:background="?android:attr/selectableItemBackground">
 
 
+    <ProgressBar
+        android:id="@+id/pr_bar_cancel"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginEnd="4dp"
+        android:indeterminateTint="@color/purple_700"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/linearBook"
+        app:layout_constraintTop_toTopOf="@+id/linearBook"
+        tools:visibility="visible" />
+
     <ImageView
         android:id="@+id/imageCancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="4dp"
+        app:layout_constraintEnd_toEndOf="@+id/linearBook"
         app:layout_constraintTop_toTopOf="@+id/linearBook"
         app:srcCompat="@drawable/ic_cancel" />
 

@@ -6,16 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.meridiane.lection3.databinding.FragmentActiveOrdersBinding
-import com.meridiane.lection3.presentation.recyclerView.AllOrderAdapter
-import com.meridiane.lection3.presentation.recyclerView.AllOrderStateAdapter
 import com.meridiane.lection3.presentation.recyclerView.DefaultLoadStateAdapter
-import com.meridiane.lection3.presentation.recyclerView.TryAgainActionAllOrder
+import com.meridiane.lection3.presentation.recyclerView.orders.ActiveOrderAdapter
+import com.meridiane.lection3.presentation.recyclerView.orders.ActiveOrderStateAdapter
+import com.meridiane.lection3.presentation.recyclerView.orders.TryActiveOrder
 import com.meridiane.lection3.presentation.ui.catalog.ProgressContainer
 import com.meridiane.lection3.presentation.viewModel.OrdersViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,7 +27,7 @@ class ActiveOrdersFragment : Fragment() {
 
     private lateinit var binding: FragmentActiveOrdersBinding
     private lateinit var mainLoadStateHolder: DefaultLoadStateAdapter.Holder
-    private val viewModel: OrdersViewModel by viewModels()
+    private val viewModel: OrdersViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,8 +38,8 @@ class ActiveOrdersFragment : Fragment() {
 
     }
 
-    private val allOrdersAdapter by lazy {
-        AllOrderAdapter { order ->
+    private val activeOrdersAdapter by lazy {
+        ActiveOrderAdapter { order ->
             Toast.makeText(requireContext(),"$order", Toast.LENGTH_SHORT).show()
         }
     }
@@ -51,11 +51,16 @@ class ActiveOrdersFragment : Fragment() {
         binding.containerState.state = ProgressContainer.State.Loading
 
         setupUsersList()
-        viewModel.getActiveOrders()
 
         lifecycleScope.launch {
-            viewModel.ordersStateActiveOrder.collectLatest {
-                allOrdersAdapter.submitData(it)
+            viewModel.ordersState.collectLatest {
+                activeOrdersAdapter.submitData(it)
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            activeOrdersAdapter.addLoadStateListener  {
+                viewModel.stateFlowActiveOrder.value = activeOrdersAdapter.itemCount
             }
         }
 
@@ -64,7 +69,7 @@ class ActiveOrdersFragment : Fragment() {
     }
 
     private fun stateAdapter(binding:FragmentActiveOrdersBinding){
-        allOrdersAdapter.addLoadStateListener { state ->
+        activeOrdersAdapter.addLoadStateListener { state ->
 
             binding.containerState.state = when (state.source.refresh) {
                 is LoadState.Error -> {
@@ -74,7 +79,7 @@ class ActiveOrdersFragment : Fragment() {
                     ProgressContainer.State.Loading
                 }
                 is LoadState.NotLoading -> {
-                    if (allOrdersAdapter.itemCount == 0) {
+                    if (activeOrdersAdapter.itemCount == 0) {
                         ProgressContainer.State.Notice("Пустота")
                     } else {
                         ProgressContainer.State.Success
@@ -87,19 +92,19 @@ class ActiveOrdersFragment : Fragment() {
 
     private fun setupUsersList() {
 
-        val tryAgainAction: TryAgainActionAllOrder = { allOrdersAdapter.retry() }
+        val tryAgainAction: TryActiveOrder = { activeOrdersAdapter.retry() }
 
-        val footerAdapter = AllOrderStateAdapter(tryAgainAction)
+        val footerAdapter = ActiveOrderStateAdapter(tryAgainAction)
 
-        val adapterWithLoadState = allOrdersAdapter.withLoadStateFooter(footerAdapter)
+        val adapterWithLoadState = activeOrdersAdapter.withLoadStateFooter(footerAdapter)
 
-        binding.recyclerViewAllOrders.apply {
+        binding.recyclerViewActiveOrders.apply {
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             adapter = adapterWithLoadState
 
         }
-        (binding.recyclerViewAllOrders.itemAnimator as? DefaultItemAnimator)?.supportsChangeAnimations = false
+        (binding.recyclerViewActiveOrders.itemAnimator as? DefaultItemAnimator)?.supportsChangeAnimations = false
 
         mainLoadStateHolder = DefaultLoadStateAdapter.Holder(
             binding.loadStateView,

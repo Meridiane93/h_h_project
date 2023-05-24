@@ -80,13 +80,14 @@ class SignInFragment : Fragment() {
             }
 
             viewModel.liveData.observe(viewLifecycleOwner) { token ->
-                if (token.length > 10) {  // сомнительная проверка
+
+                try {
                     viewModel.saveTokenVM(token)
                     findNavController().navigate(R.id.bookFragment)
-                } else {
+                } catch (e:Exception){
                     textViewError.visibility = View.VISIBLE
                     textViewError.text =
-                        view?.context?.getString(R.string.error_text, token)
+                        view?.context?.getString(R.string.error_text, e)
 
                     buttonSignIn.isLoading
                     buttonSignIn.setText(getString(R.string.repeat_button_text))

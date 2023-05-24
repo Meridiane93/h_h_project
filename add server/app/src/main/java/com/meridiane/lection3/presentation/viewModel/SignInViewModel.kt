@@ -30,7 +30,7 @@ class SignInViewModel @Inject constructor(
                 liveData.value = token.toString()
 
             } catch (e: Exception) {
-                Log.d("MyTag", "Exception $e")
+                Log.d("MyTag", "Except $e")
                 liveData.value = e.message.toString()
             }
         }

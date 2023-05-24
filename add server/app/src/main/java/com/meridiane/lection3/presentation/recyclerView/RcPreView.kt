@@ -9,7 +9,7 @@ import coil.load
 import com.meridiane.lection3.R
 
 class RcPreView(
-    private val list: MutableList<Int?>,
+    private val list: MutableList<String?>,
     private var onItemClicked: ((image: Int) -> Unit)
 ) :
     RecyclerView.Adapter<RcPreView.ImageHolder>() {
@@ -28,7 +28,7 @@ class RcPreView(
 
         var imageView: ImageView = itemView.findViewById(R.id.imageRcView)
 
-        fun setData(image: Int?) {
+        fun setData(image: String?) {
             if (image == null) imageView.load(R.drawable.default_image_pre_view)
             else imageView.load(image)
 

@@ -28,14 +28,32 @@
 
     <style name="TextAppearance" parent="android:TextAppearance" />
 
+    <style name="Button.ProgressBar" >
+        <item name="android:layout_height">60dp</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">@dimen/text_size_button</item>
+
+    </style>
+
     <style name="TextAppearance.H1">
         <item name="android:textSize">@dimen/text_h1_size_sign_in</item>
+    </style>
+
+    <style name="TextAppearance.Head">
+        <item name="android:textSize">@dimen/text_h1_size_head</item>
     </style>
 
     <style name="TextAppearance.H1Profile">
         <item name="android:textSize">@dimen/text_h1_size_sign_in</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="TextAppearance.IncrementDecrement">
+        <item name="android:textSize">22sp</item>
+
+        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="TextAppearance.H2Profile">

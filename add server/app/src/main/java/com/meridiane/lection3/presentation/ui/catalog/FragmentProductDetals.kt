@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.meridiane.lection3.Constants
 import com.meridiane.lection3.R
 import com.meridiane.lection3.databinding.FragmentProductDetalsBinding
+import com.meridiane.lection3.domain.entity.product_detail.SizeProduct
 import com.meridiane.lection3.presentation.recyclerView.RcPreView
 import com.meridiane.lection3.presentation.recyclerView.RcViewPager
 import com.meridiane.lection3.presentation.viewModel.ProductDetailsViewModel
@@ -27,7 +28,8 @@ class FragmentProductDetails : Fragment() {
 
     private lateinit var binding: FragmentProductDetalsBinding
 
-    private val viewModel: ProductDetailsViewModel by viewModels()
+    private val viewModel: ProductDetailsViewModel by activityViewModels()
+    private val bundle = Bundle()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,15 +43,22 @@ class FragmentProductDetails : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val id = arguments?.getString(Constants.SEND_ID_DETAILS_FRAGMENT)!!
+        var listSize: List<SizeProduct> ?= null
 
         viewModel.getProductDetails(id)
 
         lifecycleScope.launch {
             viewModel.productsState.collectLatest { product ->
-                Toast.makeText(requireContext(), "$product", Toast.LENGTH_SHORT).show()
+
                 if (product.title != null) {
-                    preView(product.preview)
-                    imagePage(product.preview)
+                    binding.textPrice.text = product.price.toString()
+                    binding.textProduct.text = product.title
+                    binding.textCatecory.text = product.department
+                    binding.textDescription.text = product.description
+                    product.images?.let { preView(it) }
+                    product.images?.let { imagePage(it) }
+
+                    listSize = product.sizes
                 }
             }
         }
@@ -59,20 +68,37 @@ class FragmentProductDetails : Fragment() {
         }
 
         binding.textInput.setOnClickListener {
-            showDialog()
+            showDialog(listSize)
         }
 
+        binding.btAddOrder.setOnClickListener{
+            bundle.putString(Constants.SEND_ID_ADD_ORDER, id)
+            findNavController().navigate(R.id.addOrderFragment2, bundle)
+        }
     }
 
-
-    private fun imagePage(image: Int?) {
-        val rcViewPager = RcViewPager(mutableListOf(image, null, null))
-        binding.viewPager2.adapter = rcViewPager
+    private fun imagePage(image: List<String>) {
+        binding.viewPager2.adapter =
+            when (image.size) {
+                1 -> RcViewPager(mutableListOf(image[0], null, null))
+                2 -> RcViewPager(mutableListOf(image[0], image[1], null))
+                else -> RcViewPager(mutableListOf(image[0], image[1], image[2]))
+            }
     }
 
-    private fun preView(string: Int?) {
-        val rcPreView = RcPreView(mutableListOf(string, null, null)) { item ->
-            binding.viewPager2.currentItem = item
+    private fun preView(image: List<String>) {
+        val rcPreView = when (image.size) {
+            1 -> RcPreView(mutableListOf(image[0], null, null)) { item ->
+                binding.viewPager2.currentItem = item
+            }
+
+            2 -> RcPreView(mutableListOf(image[0], image[1], null)) { item ->
+                binding.viewPager2.currentItem = item
+            }
+
+            else -> RcPreView(mutableListOf(image[0], image[1], image[2])) { item ->
+                binding.viewPager2.currentItem = item
+            }
         }
 
         binding.rcPreView.layoutManager =
@@ -80,15 +106,18 @@ class FragmentProductDetails : Fragment() {
         binding.rcPreView.adapter = rcPreView
     }
 
-    private fun showDialog() {
-        childFragmentManager.setFragmentResultListener("request_key",this) { _, bundle ->
+    private fun showDialog(listSize: List<SizeProduct>?) {
+        childFragmentManager.setFragmentResultListener("request_key", this) { _, bundle ->
             val result = bundle.getString("bundleKey")
 
             binding.textInput.setText(result)
+            viewModel.sizeProduct = result.toString()
         }
-        val modalBottomSheet = BottomDialogFragment()
-        modalBottomSheet.dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        modalBottomSheet.show(childFragmentManager, BottomDialogFragment.TAG)
+        val modalBottomSheet = listSize?.let { BottomDialogFragment(it) { size ->
+            viewModel.sizeProduct = size
+        }
+        }
+        modalBottomSheet?.dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        modalBottomSheet?.show(childFragmentManager, BottomDialogFragment.TAG)
     }
-
 }

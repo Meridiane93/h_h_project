@@ -1,4 +1,4 @@
-package com.meridiane.lection3.presentation.recyclerView
+package com.meridiane.lection3.presentation.recyclerView.orders
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,11 +9,11 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.meridiane.lection3.databinding.PartDefaultLoadStateBinding
 
-typealias TryAgainActionAllOrder = () -> Unit
+typealias TryActiveOrder = () -> Unit
 
-class AllOrderStateAdapter(
-    private val tryAgainAction: TryAgainActionAllOrder
-) : LoadStateAdapter<AllOrderStateAdapter.Holder>() {
+class ActiveOrderStateAdapter(
+    private val tryAgainAction: TryActiveOrder
+) : LoadStateAdapter<ActiveOrderStateAdapter.Holder>() {
 
     override fun onBindViewHolder(holder: Holder, loadState: LoadState) {
         holder.bind(loadState)
@@ -28,7 +28,7 @@ class AllOrderStateAdapter(
     class Holder(
         private val binding: PartDefaultLoadStateBinding,
         private val swipeRefreshLayout: SwipeRefreshLayout?,
-        private val tryAgainAction: TryAgainActionAllOrder
+        private val tryAgainAction: TryActiveOrder
     ) : RecyclerView.ViewHolder(binding.root) {
 
         init {

@@ -1,4 +1,4 @@
-package com.meridiane.lection3.presentation.recyclerView
+package com.meridiane.lection3.presentation.recyclerView.orders
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,10 +7,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.meridiane.lection3.databinding.OrderFragmentBinding
-import com.meridiane.lection3.domain.entity.Order
+import com.meridiane.lection3.domain.entity.AllOrder
 
-class AllOrderAdapter(private var onItemClicked: ((product: Order) -> Unit)) :
-    PagingDataAdapter<Order, AllOrderAdapter.ProductViewHolder>(DiffUtilCallBack()) {
+class ActiveOrderAdapter(private var onItemClicked: ((product: AllOrder) -> Unit)) :
+    PagingDataAdapter<AllOrder, ActiveOrderAdapter.ProductViewHolder>(DiffUtilCallBack()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder =
         ProductViewHolder(
@@ -21,6 +21,7 @@ class AllOrderAdapter(private var onItemClicked: ((product: Order) -> Unit)) :
             )
         )
 
+
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
@@ -30,13 +31,13 @@ class AllOrderAdapter(private var onItemClicked: ((product: Order) -> Unit)) :
     ) :
         RecyclerView.ViewHolder(itemBinding.root) {
 
-        fun bind(order: Order?) = with(itemBinding) {
-            textOrder.text = order?.numberOrder
+        fun bind(order: AllOrder?) = with(itemBinding) {
+            textOrder.text = order?.createdAt
             textStatus.text = order?.status
-            textSize.text = order?.size
-            textdata.text = order?.dateGet
-            textaddress.text = order?.address
-            imageProduct.load(order?.image!!)
+            textSize.text = order?.productSize
+            textdata.text = order?.etd
+            textaddress.text = order?.deliveryAddress
+            imageProduct.load(order?.productPreview!!)
 
             itemView.setOnClickListener {
                 onItemClicked(order)
@@ -45,12 +46,12 @@ class AllOrderAdapter(private var onItemClicked: ((product: Order) -> Unit)) :
 
     }
 
-    class DiffUtilCallBack : DiffUtil.ItemCallback<Order>() {
+    class DiffUtilCallBack : DiffUtil.ItemCallback<AllOrder>() {
 
-        override fun areItemsTheSame(oldItem: Order, newItem: Order): Boolean =
+        override fun areItemsTheSame(oldItem: AllOrder, newItem: AllOrder): Boolean =
             oldItem.id == newItem.id
 
-        override fun areContentsTheSame(oldItem: Order, newItem: Order): Boolean =
+        override fun areContentsTheSame(oldItem: AllOrder, newItem: AllOrder): Boolean =
             oldItem == newItem
     }
 

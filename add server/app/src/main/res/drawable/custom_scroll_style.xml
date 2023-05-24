@@ -2,9 +2,9 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
 
     <gradient
-        android:centerColor="@color/purple_700"
-        android:endColor="@color/purple_700"
-        android:startColor="@color/purple_700" />
+        android:centerColor="@color/silver_chalice"
+        android:endColor="@color/silver_chalice"
+        android:startColor="@color/silver_chalice" />
     <corners android:radius="@dimen/normal_100" />
     <size android:width="6dp" />
 

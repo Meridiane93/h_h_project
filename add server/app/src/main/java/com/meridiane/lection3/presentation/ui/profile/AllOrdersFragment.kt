@@ -1,19 +1,22 @@
 package com.meridiane.lection3.presentation.ui.profile
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.meridiane.lection3.databinding.FragmentActiveOrdersBinding
 import com.meridiane.lection3.databinding.FragmentAllOrdersBinding
 import com.meridiane.lection3.presentation.recyclerView.*
+import com.meridiane.lection3.presentation.recyclerView.orders.AllOrderAdapter
+import com.meridiane.lection3.presentation.recyclerView.orders.AllOrderStateAdapter
+import com.meridiane.lection3.presentation.recyclerView.orders.TryAgainActionAllOrder
 import com.meridiane.lection3.presentation.ui.catalog.ProgressContainer
 import com.meridiane.lection3.presentation.viewModel.OrdersViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,11 +28,13 @@ class AllOrdersFragment : Fragment() {
 
     private lateinit var binding: FragmentAllOrdersBinding
     private lateinit var mainLoadStateHolder: DefaultLoadStateAdapter.Holder
-    private val viewModel: OrdersViewModel by viewModels()
+    private val viewModel: OrdersViewModel by activityViewModels()
 
     private val allOrdersAdapter by lazy {
-        AllOrderAdapter { order ->
-            Toast.makeText(requireContext(),"$order", Toast.LENGTH_SHORT).show()
+        AllOrderAdapter { order, position ->
+            viewModel.positionСlickOrder = position
+            viewModel.cancelOrder(order.id!!)
+            viewModel.oldOrder = order
         }
     }
 
@@ -47,11 +52,30 @@ class AllOrdersFragment : Fragment() {
         binding.containerState.state = ProgressContainer.State.Loading
 
         setupUsersList()
-        viewModel.getOrders()
 
         lifecycleScope.launch {
             viewModel.ordersState.collectLatest {
                 allOrdersAdapter.submitData(it)
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            allOrdersAdapter.addLoadStateListener  {
+                    viewModel.stateFlowAllOrder.value = allOrdersAdapter.itemCount
+            }
+        }
+     
+        // обновление списка после отмены заказа
+        lifecycleScope.launch {
+            viewModel._ordersStateCancel.collectLatest {
+                Log.d("MyTag","AllOrder: ${viewModel.positionСlickOrder},,,$it,,,${viewModel.oldOrder}")
+                allOrdersAdapter.cancelOrder(viewModel.positionСlickOrder,it,viewModel.oldOrder)
+            }
+        }
+
+        lifecycleScope.launch {
+            viewModel._ordersStateCancelExeption.collectLatest {exeption ->
+                Toast.makeText(requireContext(),"Exeption: $exeption",Toast.LENGTH_SHORT).show()
             }
         }
 

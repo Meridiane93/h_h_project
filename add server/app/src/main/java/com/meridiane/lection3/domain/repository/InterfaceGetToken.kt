@@ -4,5 +4,5 @@ interface InterfaceGetToken {
 
     fun getTokenBd(): String
 
-    fun getTokenServer(login: String, password: String): Result.Companion
+    suspend fun  getTokenServer(login: String, password: String): String?
 }

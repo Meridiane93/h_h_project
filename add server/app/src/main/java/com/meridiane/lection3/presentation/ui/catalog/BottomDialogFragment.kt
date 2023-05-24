@@ -9,13 +9,20 @@ import androidx.fragment.app.setFragmentResult
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.meridiane.lection3.databinding.BottomDialogLayoutBinding
+import com.meridiane.lection3.domain.entity.product_detail.SizeProduct
 import com.meridiane.lection3.presentation.recyclerView.RcAdapterBottom
 
-open class BottomDialogFragment : BottomSheetDialogFragment() {
+
+open class BottomDialogFragment(
+    val list: List<SizeProduct>,
+    private var onItemClicked: (size: String) -> Unit
+
+) : BottomSheetDialogFragment() {
 
     private lateinit var binding: BottomDialogLayoutBinding
 
-    private val rcAdapterBottomAndPreView = RcAdapterBottom { data ->
+    private val rcAdapterBottomAndPreView = RcAdapterBottom(list) { data ->
+        onItemClicked(data)
         setFragmentResult("request_key", bundleOf("bundleKey" to data))
         dismiss()
     }

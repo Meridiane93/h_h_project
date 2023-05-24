@@ -1,13 +1,15 @@
 package com.meridiane.lection3.presentation.di
 
 import com.meridiane.lection3.data.repository.MockRepository
+import com.meridiane.lection3.domain.repository.InterfaceGetProductDetailsRepository
 import com.meridiane.lection3.domain.useCaseAuthorization.GetToken
 import com.meridiane.lection3.domain.useCaseAuthorization.GetTokenUseCaseImpl
 import com.meridiane.lection3.domain.useCaseAuthorization.SaveToken
 import com.meridiane.lection3.domain.useCaseAuthorization.SaveTokenUseCaseImpl
 import com.meridiane.lection3.domain.useCaseAuthorization.UserAuthorization
 import com.meridiane.lection3.domain.useCaseAuthorization.UserAuthorizationUseCaseImpl
-
+import com.meridiane.lection3.domain.useCaseProducts.GetProductDetailInterface
+import com.meridiane.lection3.domain.useCaseProducts.GetProductDetailsUseCaseImpl
 import com.meridiane.lection3.domain.useCaseProducts.GetProductsUseCaseImpl
 import com.meridiane.lection3.domain.useCaseProducts.GetProductsInterface
 import com.meridiane.lection3.domain.useCaseProfile.*
@@ -32,9 +34,9 @@ class DomainModule {
     fun provideUserAuthorization(mockRepository: MockRepository): UserAuthorization =
         UserAuthorizationUseCaseImpl(interfaceGetLoginRepository = mockRepository)
 
-//    @Provides
-//    fun provideGetProductDetails(mockRepository: MockRepository): GetProductDetailsInterface =
-//        GetProductDetailsUseCaseImpl(interfaceGetProductDetailsRepository = mockRepository)
+    @Provides
+    fun provideGetProductDetails(mockRepository: MockRepository): GetProductDetailInterface =
+        GetProductDetailsUseCaseImpl(interfaceGetProductDetailsRepository = mockRepository)
 
     @Provides
     fun provideGetActiveOrders(mockRepository: MockRepository): GetActiveOrderInterface =
@@ -47,4 +49,6 @@ class DomainModule {
     @Provides
     fun provideSaveToken(mockRepository: MockRepository): SaveToken =
         SaveTokenUseCaseImpl(interfaceSaveToken = mockRepository)
+
+
 }

@@ -49,7 +49,6 @@ class BookFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.container.state = ProgressContainer.State.Loading
         setupUsersList()
 
         lifecycleScope.launch {
@@ -93,14 +92,12 @@ class BookFragment : Fragment() {
         )
 
         productsAdapter.addLoadStateListener { state ->
-
-            binding.container.state = when (state.source.refresh) {
-                is LoadState.Error -> ProgressContainer.State.Notice("Ошибка")
+            binding.container.state = when (val currentState = state.source.refresh) {
+                is LoadState.Error -> ProgressContainer.State.Notice("${currentState.error}")
                 is LoadState.Loading -> ProgressContainer.State.Loading
                 is LoadState.NotLoading -> {
                     if (productsAdapter.itemCount == 0) {
                         ProgressContainer.State.Notice("Пустота")
-
                     } else {
                         ProgressContainer.State.Success
                     }

@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.meridiane.lection3.R
 
-class RcViewPager(private val list: MutableList<Int?>) :
+class RcViewPager(private val list: MutableList<String?>) :
     RecyclerView.Adapter<RcViewPager.ImageHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageHolder {
@@ -25,7 +25,7 @@ class RcViewPager(private val list: MutableList<Int?>) :
 
         var imageView: ImageView = itemView.findViewById(R.id.imagePage)
 
-        fun setData(image: Int?) {
+        fun setData(image: String?) {
             if (image == null) imageView.load(R.drawable.default_image_view_pager)
             else imageView.load(image)
         }

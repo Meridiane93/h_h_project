@@ -6,7 +6,7 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.meridiane.lection3.domain.entity.Product
+import com.meridiane.lection3.domain.entity.product.Product
 import com.meridiane.lection3.databinding.ProductFragmentBinding
 
 class PagingAdapter(private var onItemClicked: ((product: Product) -> Unit)) :
@@ -31,12 +31,17 @@ class PagingAdapter(private var onItemClicked: ((product: Product) -> Unit)) :
         RecyclerView.ViewHolder(itemBinding.root) {
 
         fun bind(product: Product?) = with(itemBinding) {
-            textProduct.text = product?.title
-            textCatecory.text = product?.category
-            imageProduct.load(product?.preview!!)
+            if(product != null) {
+                textProduct.text = if (product.title!!.length > 16) product.title.substring(
+                    0,
+                    16
+                ) else product.title
+                textCatecory.text = product.category
+                imageProduct.load(product.preview!!)
 
-            itemView.setOnClickListener {
-                onItemClicked(product)
+                itemView.setOnClickListener {
+                    onItemClicked(product)
+                }
             }
         }
 
