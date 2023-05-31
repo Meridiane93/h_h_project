@@ -1,9 +1,8 @@
 package com.meridiane.lection3.presentation.viewModel
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.meridiane.lection3.domain.entity.AddOrder
+import com.meridiane.lection3.domain.entity.order.AddOrder
 import com.meridiane.lection3.domain.entity.product_detail.ProductDetail
 import com.meridiane.lection3.domain.useCaseProducts.GetProductDetailInterface
 import dagger.hilt.android.lifecycle.HiltViewModel

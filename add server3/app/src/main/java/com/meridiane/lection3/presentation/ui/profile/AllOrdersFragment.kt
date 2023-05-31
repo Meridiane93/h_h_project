@@ -1,7 +1,6 @@
 package com.meridiane.lection3.presentation.ui.profile
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,11 +11,12 @@ import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.meridiane.lection3.R
 import com.meridiane.lection3.databinding.FragmentAllOrdersBinding
-import com.meridiane.lection3.presentation.recyclerView.*
 import com.meridiane.lection3.presentation.recyclerView.orders.AllOrderAdapter
 import com.meridiane.lection3.presentation.recyclerView.orders.AllOrderStateAdapter
 import com.meridiane.lection3.presentation.recyclerView.orders.TryAgainActionAllOrder
+import com.meridiane.lection3.presentation.recyclerView.product.DefaultLoadStateAdapter
 import com.meridiane.lection3.presentation.ui.catalog.ProgressContainer
 import com.meridiane.lection3.presentation.viewModel.OrdersViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -65,8 +65,8 @@ class AllOrdersFragment : Fragment() {
 
 
         lifecycleScope.launch {
-            viewModel._ordersStateCancelExeption.collectLatest {exeption ->
-                Toast.makeText(requireContext(),"Exeption: $exeption",Toast.LENGTH_SHORT).show()
+            viewModel.ordersStateCancelException.collectLatest { exception ->
+                Toast.makeText(requireContext(),"Exception: $exception",Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -79,14 +79,14 @@ class AllOrdersFragment : Fragment() {
 
             binding.containerState.state = when (state.source.refresh) {
                 is LoadState.Error -> {
-                    ProgressContainer.State.Notice("Ошибка")
+                    ProgressContainer.State.Notice(getString(R.string.mistake))
                 }
                 is LoadState.Loading -> {
                     ProgressContainer.State.Loading
                 }
                 is LoadState.NotLoading -> {
                     if (allOrdersAdapter.itemCount == 0) {
-                        ProgressContainer.State.Notice("Пустота")
+                        ProgressContainer.State.Notice(getString(R.string.empty))
                     } else {
                         ProgressContainer.State.Success
                     }

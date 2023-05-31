@@ -1,9 +1,8 @@
 package com.meridiane.lection3.domain.useCaseProducts
 
-import android.util.Log
-import com.meridiane.lection3.domain.entity.AddOrder
+import com.meridiane.lection3.domain.entity.order.AddOrder
 import com.meridiane.lection3.domain.entity.product_detail.ProductDetail
-import com.meridiane.lection3.domain.repository.InterfaceGetProductDetailsRepository
+import com.meridiane.lection3.domain.repository.products.InterfaceGetProductDetailsRepository
 import kotlinx.coroutines.flow.Flow
 
 interface GetProductDetailInterface {
@@ -22,11 +21,9 @@ class GetProductDetailsUseCaseImpl(
 
         val answer = interfaceGetProductDetailsRepository.addOrder(order).status
         return try {
-            Log.d("MyTag","Try $answer")
             Result.success(answer)
         }
         catch (e:Exception){
-            Log.d("MyTag","Cath $answer")
             Result.failure(e)
         }
     }

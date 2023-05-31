@@ -1,12 +1,10 @@
 package com.meridiane.lection3.presentation.viewModel
 
-import android.net.Uri
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.meridiane.lection3.ApiState
-import com.meridiane.lection3.domain.entity.Photo
-import com.meridiane.lection3.domain.entity.Profile
+import com.meridiane.lection3.domain.entity.profile.Photo
+import com.meridiane.lection3.domain.entity.profile.Profile
 import com.meridiane.lection3.domain.useCaseProfile.GetProfile
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*

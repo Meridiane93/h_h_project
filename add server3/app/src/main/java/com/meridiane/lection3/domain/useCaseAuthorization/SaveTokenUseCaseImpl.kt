@@ -1,6 +1,6 @@
 package com.meridiane.lection3.domain.useCaseAuthorization
 
-import com.meridiane.lection3.domain.repository.InterfaceSaveToken
+import com.meridiane.lection3.domain.repository.authorization.InterfaceSaveToken
 
 interface SaveToken {
     fun saveToken(token: String)

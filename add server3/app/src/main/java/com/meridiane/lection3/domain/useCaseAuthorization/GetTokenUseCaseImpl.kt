@@ -1,6 +1,6 @@
 package com.meridiane.lection3.domain.useCaseAuthorization
 
-import com.meridiane.lection3.domain.repository.InterfaceGetToken
+import com.meridiane.lection3.domain.repository.authorization.InterfaceGetToken
 
 interface GetToken {
     fun getTokenBd(): String

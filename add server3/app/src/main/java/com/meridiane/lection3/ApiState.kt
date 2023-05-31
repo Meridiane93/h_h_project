@@ -1,6 +1,6 @@
 package com.meridiane.lection3
 
-import com.meridiane.lection3.domain.entity.Profile
+import com.meridiane.lection3.domain.entity.profile.Profile
 
 sealed class ApiState<out T> {
     object Loading : ApiState<Nothing>()

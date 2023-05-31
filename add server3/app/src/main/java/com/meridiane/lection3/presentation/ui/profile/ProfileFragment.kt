@@ -134,8 +134,8 @@ class ProfileFragment : Fragment() {
         }
 
         rootDialogElement.textLogout.setOnClickListener {
-            binding.textName.text = "Имя Фамилия"
-            binding.textPost.text = "Должность"
+            binding.textName.text = getString(R.string.name_lastName)
+            binding.textPost.text = getString(R.string.job_title)
             binding.imagePhoto.setImageResource(R.drawable.ic_photo)
             dialog.dismiss()
         }

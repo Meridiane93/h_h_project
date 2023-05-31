@@ -2,9 +2,7 @@ package com.meridiane.lection3.data.repository
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.net.Uri
 import android.util.Log
-import androidx.core.net.toFile
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
@@ -17,15 +15,19 @@ import com.meridiane.lection3.data.pagination.PageSource
 import com.meridiane.lection3.data.pagination.PageSourceAllOrder
 import com.meridiane.lection3.data.pagination.ProductPageLoader
 import com.meridiane.lection3.data.storage.TokenStorage
-import com.meridiane.lection3.domain.entity.AddOrder
-import com.meridiane.lection3.domain.entity.AddOrderEntityDomain
-import com.meridiane.lection3.domain.entity.AllOrder
+import com.meridiane.lection3.domain.entity.order.AddOrder
+import com.meridiane.lection3.domain.entity.order.AddOrderEntityDomain
+import com.meridiane.lection3.domain.entity.order.AllOrder
 import com.meridiane.lection3.domain.entity.product.Product
-import com.meridiane.lection3.domain.entity.Profile
+import com.meridiane.lection3.domain.entity.profile.Profile
 import com.meridiane.lection3.domain.entity.product_detail.ProductDetail
-import com.meridiane.lection3.domain.repository.*
+import com.meridiane.lection3.domain.repository.authorization.InterfaceGetToken
+import com.meridiane.lection3.domain.repository.authorization.InterfaceSaveToken
+import com.meridiane.lection3.domain.repository.orders.InterfaceGetActiveOrdersRepository
+import com.meridiane.lection3.domain.repository.products.InterfaceGetProductDetailsRepository
+import com.meridiane.lection3.domain.repository.products.InterfaceGetProductsRepository
+import com.meridiane.lection3.domain.repository.profile.InterfaceGetProfileRepository
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.withContext
@@ -33,16 +35,13 @@ import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody
-import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.Multipart
 import java.io.File
 
 class MockRepository(
     private val tokenStorage: TokenStorage
 ) :
-    InterfaceGetLoginRepository,
     InterfaceGetProductsRepository,
     InterfaceGetProfileRepository,
     InterfaceGetActiveOrdersRepository,
@@ -91,7 +90,7 @@ class MockRepository(
                 pageSize = 2,
                 enablePlaceholders = false,
             ),
-            pagingSourceFactory = { PageSource(Constants.PAGE_SIZE, loader) }
+            pagingSourceFactory = { PageSource(loader) }
         ).flow
     }
 
@@ -115,7 +114,7 @@ class MockRepository(
                 enablePlaceholders = false,
                 prefetchDistance = 2 / 2
             ),
-            pagingSourceFactory = { PageSourceAllOrder(Constants.PAGE_SIZE, loader) }
+            pagingSourceFactory = { PageSourceAllOrder(loader) }
         ).flow
         }
 
@@ -164,41 +163,5 @@ class MockRepository(
             null
         }
     }
-
-
-
-
-
-
-
-
-
-
-    override fun getList(): Flow<PagingData<Product>> {
-        val loader: ProductPageLoader = { pageIndex, pageSize ->
-            getProductServer(pageIndex, pageSize)
-        }
-        return Pager(
-            config = PagingConfig(
-                pageSize = 2,
-                enablePlaceholders = false,
-            ),
-            pagingSourceFactory = { PageSource(3, loader) }
-        ).flow
-    }
-
-
-    override suspend fun getLogin(): Result<String> {
-        delay(3000L)
-        return randomResult2("is success")
-    }
-
-    private fun <T> randomResult2(data: T): Result<T> =
-        if ((0..100).random() < 90) {
-            Result.failure(RuntimeException())
-        } else {
-            Result.success(data)
-        }
-
 }
 

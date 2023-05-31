@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,8 +15,8 @@ import com.meridiane.lection3.Constants
 import com.meridiane.lection3.R
 import com.meridiane.lection3.databinding.FragmentProductDetalsBinding
 import com.meridiane.lection3.domain.entity.product_detail.SizeProduct
-import com.meridiane.lection3.presentation.recyclerView.RcPreView
-import com.meridiane.lection3.presentation.recyclerView.RcViewPager
+import com.meridiane.lection3.presentation.recyclerView.product.RcPreView
+import com.meridiane.lection3.presentation.recyclerView.product.RcViewPager
 import com.meridiane.lection3.presentation.viewModel.ProductDetailsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest

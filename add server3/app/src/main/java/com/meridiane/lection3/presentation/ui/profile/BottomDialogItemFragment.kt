@@ -9,7 +9,7 @@ import androidx.fragment.app.setFragmentResult
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.meridiane.lection3.databinding.BottomDialogItemLayoutBinding
-import com.meridiane.lection3.presentation.recyclerView.RcAdapterBottomItem
+import com.meridiane.lection3.presentation.recyclerView.product.RcAdapterBottomItem
 
 open class BottomDialogItemFragment(
     val list: Array<String>,
@@ -19,7 +19,7 @@ open class BottomDialogItemFragment(
     private lateinit var binding: BottomDialogItemLayoutBinding
 
     private val rcAdapterBottomAndPreView = RcAdapterBottomItem(list) { data ->
-        setFragmentResult("request_key_item", bundleOf("bundleKey_item" to data))
+        setFragmentResult(REQUEST_KEY_ITEM, bundleOf(BUNDLE_KEY_ITEM to data))
         dismiss()
     }
 
@@ -40,6 +40,8 @@ open class BottomDialogItemFragment(
 
     companion object {
         const val TAG = "BottomDialogFragmentItem"
+        const val REQUEST_KEY_ITEM = "request_key_item"
+        const val BUNDLE_KEY_ITEM = "bundleKey_item"
     }
 
 }

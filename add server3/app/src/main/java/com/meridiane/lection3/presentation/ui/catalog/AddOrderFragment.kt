@@ -25,7 +25,7 @@ import com.meridiane.lection3.Constants
 import com.meridiane.lection3.R
 import com.meridiane.lection3.databinding.CalendarDialogBinding
 import com.meridiane.lection3.databinding.FragmentAddOrderBinding
-import com.meridiane.lection3.domain.entity.AddOrder
+import com.meridiane.lection3.domain.entity.order.AddOrder
 import com.meridiane.lection3.presentation.ui.MapActivity
 import com.meridiane.lection3.presentation.viewModel.ProductDetailsViewModel
 import dagger.hilt.android.AndroidEntryPoint

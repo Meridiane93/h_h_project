@@ -14,8 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.meridiane.lection3.Constants
 import com.meridiane.lection3.R
 import com.meridiane.lection3.databinding.FragmentProductMainBinding
-import com.meridiane.lection3.presentation.recyclerView.DefaultLoadStateAdapter
-import com.meridiane.lection3.presentation.recyclerView.PagingAdapter
+import com.meridiane.lection3.presentation.recyclerView.product.DefaultLoadStateAdapter
+import com.meridiane.lection3.presentation.recyclerView.product.PagingAdapter
 import com.meridiane.lection3.presentation.recyclerView.TryAgainAction
 import com.meridiane.lection3.presentation.viewModel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -101,7 +101,7 @@ class BookFragment : Fragment() {
                 is LoadState.Loading -> ProgressContainer.State.Loading
                 is LoadState.NotLoading -> {
                     if (productsAdapter.itemCount == 0) {
-                        ProgressContainer.State.Notice("Пустота")
+                        ProgressContainer.State.Notice(getString(R.string.empty))
                     } else {
                         ProgressContainer.State.Success
                     }

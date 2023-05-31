@@ -1,8 +1,8 @@
 package com.meridiane.lection3.domain.useCaseProfile
 
 import androidx.paging.PagingData
-import com.meridiane.lection3.domain.entity.AllOrder
-import com.meridiane.lection3.domain.repository.InterfaceGetActiveOrdersRepository
+import com.meridiane.lection3.domain.entity.order.AllOrder
+import com.meridiane.lection3.domain.repository.orders.InterfaceGetActiveOrdersRepository
 import kotlinx.coroutines.flow.Flow
 
 interface GetActiveOrderInterface {

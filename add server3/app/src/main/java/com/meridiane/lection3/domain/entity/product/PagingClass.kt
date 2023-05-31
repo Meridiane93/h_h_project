@@ -1,6 +1,6 @@
 package com.meridiane.lection3.domain.entity.product
 
-import com.meridiane.lection3.domain.entity.AllOrder
+import com.meridiane.lection3.domain.entity.order.AllOrder
 
 data class PagingClass(val order: AllOrder){
     val createdAt: String? = order.createdAt

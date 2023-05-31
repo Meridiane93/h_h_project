@@ -31,9 +31,6 @@
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" >
         <action
-            android:id="@+id/action_profileFragment_to_bookFragment"
-            app:destination="@id/bookFragment" />
-        <action
             android:id="@+id/action_profileFragment_to_myOrdersFragment"
             app:destination="@id/myOrdersFragment" />
         <action
@@ -45,9 +42,6 @@
         android:name="com.meridiane.lection3.presentation.ui.catalog.FragmentProductDetails"
         android:label="fragment_product_detals"
         tools:layout="@layout/fragment_product_detals" >
-        <action
-            android:id="@+id/action_fragmentProductDetails2_to_bookFragment"
-            app:destination="@id/bookFragment" />
         <action
             android:id="@+id/action_fragmentProductDetails2_to_addOrderFragment2"
             app:destination="@id/addOrderFragment2" />

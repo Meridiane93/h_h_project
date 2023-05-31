@@ -1,6 +1,6 @@
 package com.meridiane.lection3.data.repository
 
-import com.meridiane.lection3.data.entity.AddOrderData
+import com.meridiane.lection3.data.entity.order.AddOrderData
 import com.meridiane.lection3.data.entity.product.DetailProduct
 import com.meridiane.lection3.data.entity.authorization.AuthorizationDataModel
 import com.meridiane.lection3.data.entity.authorization.SignInData

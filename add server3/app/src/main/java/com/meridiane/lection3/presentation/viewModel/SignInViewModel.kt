@@ -1,6 +1,5 @@
 package com.meridiane.lection3.presentation.viewModel
 
-import android.util.Log
 import android.util.Patterns
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -26,11 +25,9 @@ class SignInViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 val token = getToken.getTokenServer(login,password)
-                Log.d("MyTag", "checkLogin $token")
                 liveData.value = token.toString()
 
             } catch (e: Exception) {
-                Log.d("MyTag", "Except $e")
                 liveData.value = e.message.toString()
             }
         }

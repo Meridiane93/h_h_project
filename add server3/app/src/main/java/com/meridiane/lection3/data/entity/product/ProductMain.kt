@@ -1,6 +1,5 @@
 package com.meridiane.lection3.data.entity.product
 
-import com.meridiane.lection3.domain.entity.Order
 import com.meridiane.lection3.domain.entity.product.Product
 import com.meridiane.lection3.domain.entity.product_detail.ProductDetail
 
@@ -40,15 +39,4 @@ data class ProductMain(
             },
             title = title
         )
-
-
-    fun toOrder(): Order = Order(
-        id = id,
-        numberOrder = "1",
-        status = "status",
-        size = null,
-        dateGet = null,
-        address = null,
-        image = null
-    )
 }

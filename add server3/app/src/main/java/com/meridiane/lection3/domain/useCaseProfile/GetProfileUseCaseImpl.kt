@@ -1,8 +1,8 @@
 package com.meridiane.lection3.domain.useCaseProfile
 
 import android.graphics.Bitmap
-import com.meridiane.lection3.domain.entity.Profile
-import com.meridiane.lection3.domain.repository.InterfaceGetProfileRepository
+import com.meridiane.lection3.domain.entity.profile.Profile
+import com.meridiane.lection3.domain.repository.profile.InterfaceGetProfileRepository
 
 interface GetProfile{
     suspend fun authorization(): Result<Profile>

@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.meridiane.lection3.databinding.BottomDialogLayoutBinding
 import com.meridiane.lection3.domain.entity.product_detail.SizeProduct
-import com.meridiane.lection3.presentation.recyclerView.RcAdapterBottom
+import com.meridiane.lection3.presentation.recyclerView.product.RcAdapterBottom
 
 
 open class BottomDialogFragment(
@@ -23,7 +23,7 @@ open class BottomDialogFragment(
 
     private val rcAdapterBottomAndPreView = RcAdapterBottom(list) { data ->
         onItemClicked(data)
-        setFragmentResult("request_key", bundleOf("bundleKey" to data))
+        setFragmentResult(REQUEST_KEY, bundleOf(BUNDLE_KEY to data))
         dismiss()
     }
 
@@ -44,6 +44,8 @@ open class BottomDialogFragment(
 
     companion object {
         const val TAG = "BottomDialogFragment"
+        const val REQUEST_KEY = "request_key"
+        const val BUNDLE_KEY = "bundleKey"
     }
 
 }

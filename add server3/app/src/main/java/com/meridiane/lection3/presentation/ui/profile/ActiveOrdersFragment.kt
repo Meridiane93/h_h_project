@@ -1,20 +1,19 @@
 package com.meridiane.lection3.presentation.ui.profile
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.paging.filter
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.meridiane.lection3.R
 import com.meridiane.lection3.databinding.FragmentActiveOrdersBinding
-import com.meridiane.lection3.presentation.recyclerView.DefaultLoadStateAdapter
+import com.meridiane.lection3.presentation.recyclerView.product.DefaultLoadStateAdapter
 import com.meridiane.lection3.presentation.recyclerView.orders.ActiveOrderAdapter
 import com.meridiane.lection3.presentation.recyclerView.orders.ActiveOrderStateAdapter
 import com.meridiane.lection3.presentation.recyclerView.orders.TryActiveOrder
@@ -58,7 +57,7 @@ class ActiveOrdersFragment : Fragment() {
             viewModel.testStateFlow.collectLatest {product ->
 
                 activeOrdersAdapter.submitData(product.filter { item ->
-                    item.status!!.contains("in_work", true)
+                    item.status!!.contains(getString(R.string.check_status_order), true)
                 })
             }
         }
@@ -78,7 +77,7 @@ class ActiveOrdersFragment : Fragment() {
 
             binding.containerState.state = when (state.source.refresh) {
                 is LoadState.Error -> {
-                    ProgressContainer.State.Notice("Ошибка")
+                    ProgressContainer.State.Notice(getString(R.string.mistake))
                 }
 
                 is LoadState.Loading -> {
@@ -87,7 +86,7 @@ class ActiveOrdersFragment : Fragment() {
 
                 is LoadState.NotLoading -> {
                     if (activeOrdersAdapter.itemCount == 0) {
-                        ProgressContainer.State.Notice("Пустота")
+                        ProgressContainer.State.Notice(getString(R.string.empty))
                     } else {
                         ProgressContainer.State.Success
                     }

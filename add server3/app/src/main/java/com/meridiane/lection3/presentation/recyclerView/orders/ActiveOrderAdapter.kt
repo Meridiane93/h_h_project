@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.meridiane.lection3.R
 import com.meridiane.lection3.databinding.OrderFragmentBinding
-import com.meridiane.lection3.domain.entity.AllOrder
 import com.meridiane.lection3.domain.entity.product.PagingClass
 
 class ActiveOrderAdapter(private var onItemClicked: ((product: PagingClass) -> Unit)) :

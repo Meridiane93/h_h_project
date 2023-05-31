@@ -2,7 +2,7 @@ package com.meridiane.lection3.domain.useCaseProducts
 
 import androidx.paging.PagingData
 import com.meridiane.lection3.domain.entity.product.Product
-import com.meridiane.lection3.domain.repository.InterfaceGetProductsRepository
+import com.meridiane.lection3.domain.repository.products.InterfaceGetProductsRepository
 import kotlinx.coroutines.flow.Flow
 
 interface GetProductsInterface {

@@ -1,6 +1,6 @@
 package com.meridiane.lection3.data.entity.order
 
-import com.meridiane.lection3.domain.entity.AddOrderEntityDomain
+import com.meridiane.lection3.domain.entity.order.AddOrderEntityDomain
 
 data class Data(
     val createdAt: String,

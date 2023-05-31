@@ -2,11 +2,10 @@ package com.meridiane.lection3.data.pagination
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.meridiane.lection3.domain.entity.AllOrder
+import com.meridiane.lection3.domain.entity.order.AllOrder
 
 typealias OrdersPageLoader = suspend (pageIndex: Int, pageSize: Int) -> List<AllOrder>
 class PageSourceAllOrder(
-    private val pageSize: Int,
     private val loader:OrdersPageLoader
 ) : PagingSource<Int, AllOrder>() {
 

@@ -1,6 +1,6 @@
 package com.meridiane.lection3.data.entity.profile
 
-import com.meridiane.lection3.domain.entity.Profile
+import com.meridiane.lection3.domain.entity.profile.Profile
 
 data class DataProfile(
     val avatarId: String ?= null,

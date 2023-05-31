@@ -65,4 +65,11 @@
     <string name="in_work">В работе</string>
     <string name="canceled_status">Отменен</string>
     <string name="cancel_order_status">"Был отменён %s.%s.%s в %s "</string>
+    <string name="empty">Пустота</string>
+    <string name="mistake">Ошибка</string>
+    <string name="check_status_order">in_work</string>
+    <string name="all_order_tab">Все %d</string>
+    <string name="active_order_tab">Все %d</string>
+    <string name="name_lastName">Имя Фамилия</string>
+    <string name="job_title">Должность</string>
 </resources>
