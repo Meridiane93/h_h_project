@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constrain_layot_my_order"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.ui.profile.MyOrdersFragment">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/materialToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:background="@color/purple_700"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/bt_back"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:src="@drawable/ic_back"
+        app:layout_constraintBottom_toBottomOf="@+id/materialToolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/materialToolbar" />
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/bt_back"
+        app:layout_constraintStart_toEndOf="@+id/bt_back"
+        app:layout_constraintTop_toTopOf="@+id/bt_back"
+        app:title="Мои заказы"
+        app:titleTextColor="@color/white">
+
+    </com.google.android.material.appbar.MaterialToolbar>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabs_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/purple_700"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/materialToolbar"
+        app:tabIndicatorColor="@color/white"
+        app:tabTextColor="@color/white"
+        tools:ignore="SpeakableTextPresentCheck">
+
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/view_pager_my_orders"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabs_layout">
+
+    </androidx.viewpager2.widget.ViewPager2>
+
+    <com.meridiane.lection3.presentation.ui.catalog.ProgressContainer
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/view_pager_my_orders"
+        app:layout_constraintTop_toBottomOf="@+id/materialToolbar"
+        tools:layout_editor_absoluteX="14dp"
+        tools:visibility="visible">
+
+    </com.meridiane.lection3.presentation.ui.catalog.ProgressContainer>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.ui.MapActivity">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/bottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginHorizontal="@dimen/normal_200"
+        android:layout_marginBottom="50dp"
+        android:backgroundTint="@color/white"
+        android:elevation="0dp"
+        android:visibility="gone"
+        app:cardCornerRadius="@dimen/normal_100"
+        app:layout_constraintBottom_toBottomOf="@+id/mapview"
+        tools:layout_editor_absoluteX="32dp"
+        tools:visibility="gone">
+
+        <TextView
+            android:id="@+id/tvAddress"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:paddingVertical="21dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:textAppearance="@style/TextAppearance.Body" />
+    </androidx.cardview.widget.CardView>
+
+    <com.yandex.mapkit.mapview.MapView
+        android:id="@+id/mapview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        style="@style/Theme.AndroidSchoolHxHCowboys.RoundedAppBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:layout_marginHorizontal="@dimen/normal_200"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/toolbar_bg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppBar"
+            style="@style/Theme.AndroidSchoolHxHCowboys.RoundedToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@drawable/toolbar_bg"
+            android:backgroundTint="@color/white"
+            app:layout_anchor="@+id/appBarLayout"
+            app:layout_anchorGravity="center"
+            app:menu="@menu/place_picker_menu"
+            app:navigationIcon="@drawable/ic_close"
+            app:title="@string/toolbar_house_selection_text" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
