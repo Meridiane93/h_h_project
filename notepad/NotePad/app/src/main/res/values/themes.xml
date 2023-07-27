@@ -1,0 +1,411 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+
+    <!-- атрибут цвета кнопок -->
+    <attr name="backgroundTintButton" format="color|reference" />
+    <!-- атрибут цвета кнопок выбора времени-->
+    <attr name="backgroundTintButtonTime" format="color|reference" />
+    <!-- атрибут цвета фона календаря-->
+    <attr name="backgroundCalendar" format="color|reference" />
+    <!-- атрибут цвета фона приложения-->
+    <attr name="backgroundActivity" format="color|reference" />
+    <!-- атрибут цвета фона текста-->
+    <attr name="backgroundText" format="color|reference" />
+    <!-- атрибут цвета фона картинок-->
+    <attr name="backgroundImage" format="color|reference" />
+    // не использован
+    <!-- атрибут цвета фона заметок-->
+    <attr name="backgroundNote" format="color|reference" />
+    // не использован
+    <!-- атрибут цвета фона наружнего кружка-->
+    <attr name="circleButtonMarginColor" format="color|reference" />
+    <!-- атрибут цвета фона внутреннего кружка-->
+    <attr name="circleButtonPaddingColor" format="color|reference" />
+    <!-- атрибут цвета фона внутреннего кружка кнопки сохранить-->
+    <attr name="circleButtonSaveColor" format="color|reference" />
+    <!-- атрибут цвета текста даты заметок-->
+    <attr name="colorTextDateNote" format="color|reference" />
+    <!-- атрибут цвета текста НЕТ Заметок-->
+    <attr name="colorTextNoNote" format="color|reference" />
+    <!-- атрибут цвета текста "Выберите дату" "Выберите время" "Выберите дату отображения заметок" "Вы можете выбрать другую тему" -->
+    <attr name="colorTextDate" format="color|reference" />
+    <!-- атрибут цвета текста кнопок -->
+    <attr name="textColorButton" format="color|reference" />
+    <!-- атрибут цвета текста "Название заметки" -->
+    <attr name="textColorNameNote" format="color|reference" />
+    <!-- атрибут цвета текста "Описание заметки" -->
+    <attr name="textColorDescNote" format="color|reference" />
+    <!-- атрибут цвета текста "Время" -->
+    <attr name="textTime" format="color|reference" />
+    <!-- атрибут цвета текста "Выбора времени" -->
+    <attr name="textTimeSelected" format="color|reference" />
+
+    <!-- Стандартная тема -->
+    <style name="Theme.NotePad" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <!-- изменения отсюда -->
+        <item name="backgroundTintButton">@color/background_button</item>
+        <item name="backgroundTintButtonTime">@color/grey_dark</item>
+        <item name="backgroundCalendar">@color/grey_calendar</item>
+        <item name="backgroundActivity">@color/background_activity</item>
+        <item name="backgroundText">@color/grey_darker</item>
+        <item name="backgroundImage">@color/grey_calendar</item>
+        <item name="backgroundNote">@color/grey_darker</item>
+        <item name="circleButtonMarginColor">@color/grey_dark</item>
+        <item name="circleButtonPaddingColor">@color/grey</item>
+        <item name="circleButtonSaveColor">@color/grey_darker</item>
+        <item name="colorTextDateNote">@color/green_textDate</item>
+        <item name="colorTextNoNote">@color/grey</item>
+        <item name="colorTextDate">@color/white</item>
+        <item name="textColorButton">@color/white</item>
+        <item name="textColorNameNote">@color/white</item>
+        <item name="textColorDescNote">@color/white</item>
+        <item name="textTime">@color/green_textTime</item>
+        <item name="textTimeSelected">@color/white</item>
+    </style>
+
+    <!-- Барби тема -->
+    <style name="Theme.NotePadPink" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <!-- изменения отсюда -->
+        <item name="backgroundTintButton">@color/theme_color_pink</item>
+        <item name="backgroundTintButtonTime">@color/theme_color_pink</item>
+        <item name="backgroundCalendar">@color/theme_color_pink_calendar</item>
+        <item name="backgroundActivity">@color/theme_color_pink_activity</item>
+        <item name="backgroundText">@color/theme_color_pink_activity</item>
+        <item name="backgroundImage">@color/theme_color_pink</item>
+        <item name="backgroundNote">@color/theme_color_note_pink</item>
+        <item name="circleButtonMarginColor">@color/theme_color_pink_calendar</item>
+        <item name="circleButtonPaddingColor">@color/theme_color_pink</item>
+        <item name="circleButtonSaveColor">@color/theme_color_pink</item>
+        <item name="colorTextDateNote">@color/theme_color_pink_activity</item>
+        <item name="colorTextNoNote">@color/white</item>
+        <item name="colorTextDate">@color/white</item>
+        <item name="textColorButton">@color/white</item>
+        <item name="textColorNameNote">@color/white</item>
+        <item name="textColorDescNote">@color/white</item>
+        <item name="textTime">@color/green_textTime</item>
+        <item name="textTimeSelected">@color/white</item>
+    </style>
+
+    <!-- Светлая тема -->
+    <style name="Theme.NotePadWhite" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <!-- изменения отсюда -->
+        <item name="backgroundTintButton">@color/grey_dark</item>
+        <item name="backgroundTintButtonTime">@color/grey_dark</item>
+        <item name="backgroundCalendar">@color/white</item>
+        <item name="backgroundActivity">@color/white</item>
+        <item name="backgroundText">@color/white</item>
+        <item name="backgroundImage">@color/grey_dark</item>
+        <item name="circleButtonMarginColor">@color/grey_calendar</item>
+        <item name="circleButtonPaddingColor">@color/grey_dark</item>
+        <item name="circleButtonSaveColor">@color/grey_dark</item>
+        <item name="colorTextDateNote">@color/white</item>
+        <item name="colorTextNoNote">@color/grey_dark</item>
+        <item name="colorTextDate">@color/grey_dark_whiteForText</item>
+        <item name="textColorButton">@color/white</item>
+        <item name="textColorNameNote">@color/white</item>
+        <item name="textColorDescNote">@color/white</item>
+        <item name="textTime">@color/green_textTime</item>
+        <item name="textTimeSelected">@color/white</item>
+    </style>
+
+    <!-- Золотая тема -->
+    <style name="Theme.NotePadGold" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <!-- изменения отсюда -->
+        <item name="backgroundTintButton">@color/color_gold_button</item>
+        <item name="backgroundTintButtonTime">@color/color_gold_button</item>
+        <item name="backgroundCalendar">@color/color_gold_calendar</item>
+        <item name="backgroundActivity">@color/color_gold_activity</item>
+        <item name="backgroundText">@color/color_gold_activity</item>
+        <item name="backgroundImage">@color/color_gold_button</item>
+        <item name="circleButtonMarginColor">@color/color_gold_calendar</item>
+        <item name="circleButtonPaddingColor">@color/color_gold_button</item>
+        <item name="circleButtonSaveColor">@color/color_gold_button</item>
+        <item name="colorTextNoNote">@color/white</item>
+        <item name="colorTextDate">@color/white</item>
+        <item name="textColorButton">@color/white</item>
+        <item name="textColorNameNote">@color/color_gold_text</item>
+        <item name="textColorDescNote">@color/color_gold_text</item>
+        <item name="colorTextDateNote">@color/color_gold_text</item>
+        <item name="textTime">@color/color_gold_text</item>
+        <item name="textTimeSelected">@color/color_gold_text</item>
+    </style>
+
+    <!-- Фиолетовая тема -->
+    <style name="Theme.NotePadViolet" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <!-- изменения отсюда -->
+        <item name="backgroundTintButton">@color/color_violet_button</item>
+        <item name="backgroundTintButtonTime">@color/color_violet_button</item>
+        <item name="backgroundCalendar">@color/color_violet_calendar</item>
+        <item name="backgroundActivity">@color/color_violet_activity</item>
+        <item name="backgroundText">@color/color_violet_activity</item>
+        <item name="backgroundImage">@color/color_violet_button</item>
+        <item name="circleButtonMarginColor">@color/color_violet_calendar</item>
+        <item name="circleButtonPaddingColor">@color/color_violet_button</item>
+        <item name="circleButtonSaveColor">@color/color_violet_button</item>
+        <item name="colorTextNoNote">@color/color_violet_button</item>
+        <item name="colorTextDate">@color/white</item>
+        <item name="textColorButton">@color/white</item>
+        <item name="textColorNameNote">@color/white</item>
+        <item name="textColorDescNote">@color/white</item>
+        <item name="colorTextDateNote">@color/white</item>
+        <item name="textTime">@color/white</item>
+        <item name="textTimeSelected">@color/white</item>
+    </style>
+
+    <!-- Синяя тема -->
+    <style name="Theme.NotePadBlue" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <!-- изменения отсюда -->
+        <item name="backgroundTintButton">@color/color_blue_button</item>
+        <item name="backgroundTintButtonTime">@color/color_blue_button</item>
+        <item name="backgroundCalendar">@color/color_blue_calendar</item>
+        <item name="backgroundActivity">@color/color_blue_activity</item>
+        <item name="backgroundText">@color/color_blue_activity</item>
+        <item name="backgroundImage">@color/color_blue_button</item>
+        <item name="circleButtonMarginColor">@color/color_blue_calendar</item>
+        <item name="circleButtonPaddingColor">@color/color_blue_button</item>
+        <item name="circleButtonSaveColor">@color/color_blue_button</item>
+        <item name="colorTextNoNote">@color/color_blue_button</item>
+        <item name="colorTextDate">@color/white</item>
+        <item name="textColorButton">@color/white</item>
+        <item name="textColorNameNote">@color/white</item>
+        <item name="textColorDescNote">@color/white</item>
+        <item name="colorTextDateNote">@color/white</item>
+        <item name="textTime">@color/white</item>
+        <item name="textTimeSelected">@color/white</item>
+    </style>
+
+    <!-- Оранжевая тема -->
+    <style name="Theme.NotePadOrange" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <!-- изменения отсюда -->
+        <item name="backgroundTintButton">@color/color_orange_button</item>
+        <item name="backgroundTintButtonTime">@color/color_orange_button</item>
+        <item name="backgroundCalendar">@color/color_orange_calendar</item>
+        <item name="backgroundActivity">@color/color_orange_activity</item>
+        <item name="backgroundText">@color/color_orange_activity</item>
+        <item name="backgroundImage">@color/color_orange_button</item>
+        <item name="circleButtonMarginColor">@color/color_orange_calendar</item>
+        <item name="circleButtonPaddingColor">@color/color_orange_button</item>
+        <item name="circleButtonSaveColor">@color/color_orange_button</item>
+        <item name="colorTextNoNote">@color/color_orange_button</item>
+        <item name="colorTextDate">@color/white</item>
+        <item name="textColorButton">@color/white</item>
+        <item name="textColorNameNote">@color/white</item>
+        <item name="textColorDescNote">@color/white</item>
+        <item name="colorTextDateNote">@color/white</item>
+        <item name="textTime">@color/white</item>
+        <item name="textTimeSelected">@color/white</item>
+    </style>
+
+    <!-- зеленая тема -->
+    <style name="Theme.NotePadGreen" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <!-- изменения отсюда -->
+        <item name="backgroundTintButton">@color/color_green_button</item>
+        <item name="backgroundTintButtonTime">@color/color_green_button</item>
+        <item name="backgroundCalendar">@color/color_green_calendar</item>
+        <item name="backgroundActivity">@color/color_green_activity</item>
+        <item name="backgroundText">@color/color_green_activity</item>
+        <item name="backgroundImage">@color/color_green_button</item>
+        <item name="circleButtonMarginColor">@color/color_green_calendar</item>
+        <item name="circleButtonPaddingColor">@color/color_green_button</item>
+        <item name="circleButtonSaveColor">@color/color_green_button</item>
+        <item name="colorTextNoNote">@color/color_green_button</item>
+        <item name="colorTextDate">@color/white</item>
+        <item name="textColorButton">@color/white</item>
+        <item name="textColorNameNote">@color/white</item>
+        <item name="textColorDescNote">@color/white</item>
+        <item name="colorTextDateNote">@color/white</item>
+        <item name="textTime">@color/white</item>
+        <item name="textTimeSelected">@color/white</item>
+    </style>
+
+    <!-- коричневый тема -->
+    <style name="Theme.NotePadBrown" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <!-- изменения отсюда -->
+        <item name="backgroundTintButton">@color/color_brown_button</item>
+        <item name="backgroundTintButtonTime">@color/color_brown_button</item>
+        <item name="backgroundCalendar">@color/color_brown_calendar</item>
+        <item name="backgroundActivity">@color/color_brown_activity</item>
+        <item name="backgroundText">@color/color_brown_activity</item>
+        <item name="backgroundImage">@color/color_brown_button</item>
+        <item name="circleButtonMarginColor">@color/color_brown_calendar</item>
+        <item name="circleButtonPaddingColor">@color/color_brown_button</item>
+        <item name="circleButtonSaveColor">@color/color_brown_button</item>
+        <item name="colorTextNoNote">@color/color_brown_button</item>
+        <item name="colorTextDate">@color/white</item>
+        <item name="textColorButton">@color/white</item>
+        <item name="textColorNameNote">@color/white</item>
+        <item name="textColorDescNote">@color/white</item>
+        <item name="colorTextDateNote">@color/white</item>
+        <item name="textTime">@color/white</item>
+        <item name="textTimeSelected">@color/white</item>
+    </style>
+
+    <!-- серыйпочти тема -->
+    <style name="Theme.NotePadGreyDark" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <!-- изменения отсюда -->
+        <item name="backgroundTintButton">@color/color_greyDark_button</item>
+        <item name="backgroundTintButtonTime">@color/color_greyDark_button</item>
+        <item name="backgroundCalendar">@color/color_greyDark_calendar</item>
+        <item name="backgroundActivity">@color/color_greyDark_activity</item>
+        <item name="backgroundText">@color/color_greyDark_activity</item>
+        <item name="backgroundImage">@color/color_greyDark_button</item>
+        <item name="circleButtonMarginColor">@color/color_greyDark_calendar</item>
+        <item name="circleButtonPaddingColor">@color/color_greyDark_button</item>
+        <item name="circleButtonSaveColor">@color/color_greyDark_button</item>
+        <item name="colorTextNoNote">@color/color_greyDark_button</item>
+        <item name="colorTextDate">@color/white</item>
+        <item name="textColorButton">@color/white</item>
+        <item name="textColorNameNote">@color/white</item>
+        <item name="textColorDescNote">@color/white</item>
+        <item name="colorTextDateNote">@color/white</item>
+        <item name="textTime">@color/white</item>
+        <item name="textTimeSelected">@color/white</item>
+    </style>
+
+    <!-- мятная тема -->
+    <style name="Theme.NotePadMint" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <!-- изменения отсюда -->
+        <item name="backgroundTintButton">@color/color_greyDark_button</item>
+        <item name="backgroundTintButtonTime">@color/color_greyDark_button</item>
+        <item name="backgroundCalendar">@color/color_greyDark_calendar</item>
+        <item name="backgroundActivity">@color/color_greyDark_activity</item>
+        <item name="backgroundText">@color/color_greyDark_activity</item>
+        <item name="backgroundImage">@color/color_greyDark_button</item>
+        <item name="circleButtonMarginColor">@color/color_greyDark_calendar</item>
+        <item name="circleButtonPaddingColor">@color/color_greyDark_button</item>
+        <item name="circleButtonSaveColor">@color/color_greyDark_button</item>
+        <item name="colorTextNoNote">@color/color_greyDark_button</item>
+        <item name="colorTextDate">@color/white</item>
+        <item name="textColorButton">@color/white</item>
+        <item name="textColorNameNote">@color/white</item>
+        <item name="textColorDescNote">@color/white</item>
+        <item name="colorTextDateNote">@color/white</item>
+        <item name="textTime">@color/white</item>
+        <item name="textTimeSelected">@color/white</item>
+    </style>
+
+    <style name="Theme.NotePad.AppWidgetContainerParent" parent="@android:style/Theme.DeviceDefault">
+        <!-- Radius of the outer bound of widgets to make the rounded corners -->
+        <item name="appWidgetRadius">16dp</item>
+        <!--
+        Radius of the inner view's bound of widgets to make the rounded corners.
+        It needs to be 8dp or less than the value of appWidgetRadius
+        -->
+        <item name="appWidgetInnerRadius">8dp</item>
+    </style>
+
+    <style name="Theme.NotePad.AppWidgetContainer" parent="Theme.NotePad.AppWidgetContainerParent">
+        <!-- Apply padding to avoid the content of the widget colliding with the rounded corners -->
+        <item name="appWidgetPadding">5dp</item>
+    </style>
+</resources>

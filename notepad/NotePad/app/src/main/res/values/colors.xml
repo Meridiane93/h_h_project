@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#360F8F</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="grey">#CCCCCC</color>
+    <color name="grey_calendar">#96958C</color>
+    <color name="grey_calendar_close">#30302E</color>
+    <color name="grey_dark">#999999</color>
+    <color name="grey_darker">#666666</color>
+    <color name="green_textTime">#00FF66</color>
+    <color name="green_textDate">#99CCCC</color>
+    <color name="red_dateOld">#FF6600</color>
+    <color name="red_closed">#DA2C67</color>
+    <color name="theme_color_pink_closed_image">#E65D8E</color>
+    <color name="theme_color_pink">#F19CBB</color>
+    <color name="theme_color_note_pink">#DF8CAA</color>
+    <color name="theme_color_pink_calendar">#E3C1CD</color>
+    <color name="theme_color_pink_activity">#E1CBD3</color>
+    <color name="background_activity">#FF424242</color>
+    <color name="background_button">#34147E</color>
+    <color name="grey_dark_whiteForText">#706A6A</color>
+
+    <color name="color_gold_button">#ffe86a</color>
+    <color name="color_gold_calendar">#FFF1A4</color>
+    <color name="color_gold_activity">#D8CD91</color>
+    <color name="color_gold_buttonCloseImageTheme">#BC9F03</color>
+    <color name="color_gold_text">#d5b300</color>
+
+    <color name="color_violet_button">#926EAE</color>
+    <color name="color_violet_image_close">#6C5280</color>
+    <color name="color_violet_activity">#BBB0C3</color>
+    <color name="color_violet_calendar">#AA99B6</color>
+
+    <color name="color_blue_button">#0047AB</color>
+    <color name="color_blue_image_close">#093573</color>
+    <color name="color_blue_activity">#B8C7DC</color>
+    <color name="color_blue_calendar">#A4B9D6</color>
+
+    <color name="color_orange_button">#F4A900</color>
+    <color name="color_orange_image_close">#936808</color>
+    <color name="color_orange_activity">#E3D6B9</color>
+    <color name="color_orange_calendar">#ECD6A6</color>
+    #f6d4b0
+
+    <color name="color_green_button">#008000</color>
+    <color name="color_green_image_close">#035903</color>
+    <color name="color_green_activity">#BEE4BE</color>
+    <color name="color_green_calendar">#A3DDA3</color>
+
+    <color name="color_brown_button">#c29a76</color>
+    <color name="color_brown_image_close">#8C6E54</color>
+    <color name="color_brown_activity">#CCB8A6</color>
+    <color name="color_brown_calendar">#CCA98A</color>
+
+    <color name="color_greyDark_button">#c9dad7</color>
+    <color name="color_greyDark_image_close">#94A3A0</color>
+    <color name="color_greyDark_activity">#E9EFEE</color>
+    <color name="color_greyDark_calendar">#D9E6E4</color>
+
+    <color name="color_mint_button">#3eb489</color>
+    <color name="color_mint_image_close">#2F8A69</color>
+    <color name="color_mint_activity">#D5EDE4</color>
+    <color name="color_mint_calendar">#AFDACA</color>
+    <color name="light_blue_50">#FFE1F5FE</color>
+    <color name="light_blue_200">#FF81D4FA</color>
+    <color name="light_blue_600">#FF039BE5</color>
+    <color name="light_blue_900">#FF01579B</color>
+</resources>

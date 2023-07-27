@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    // стили виджетов
+    <attr name="colorTx" format="color|reference" />
+
+    <style name="ButtonText" parent="@android:style/Widget.Button">
+        <item name="android:background">?attr/backgroundActivity</item>
+    </style>
+
+    <style name="ButtonTextGreen" parent="@android:style/Widget.Button">
+        <item name="android:background">?attr/backgroundActivity</item>
+    </style>
+
+    // цвет фона виджета
+
+    <style name="Widget.NotePad.AppWidget.Container" parent="android:Widget">
+        <item name="android:id">@android:id/background</item>
+        <item name="android:background">?attr/backgroundActivity</item>
+    </style>
+
+    // цвет текста заметок и окрашивание тескта ( менять цвет в drawable->app_widget_inner) в виджет
+
+    <style name="Widget.NotePad.AppWidget.InnerView" parent="android:Widget">
+        <item name="android:background">?attr/backgroundNote</item>
+        <item name="android:textColor">?attr/textColorNameNote</item>
+    </style>
+
+    // цвет текста : Список дел в виджет
+
+    <style name="textColor">
+        <item name="colorTx">?attr/textColorNameNote</item>
+    </style>
+</resources>
